@@ -9,6 +9,11 @@ Welcome to Python for the Financial Economist
 :Release: |release|
 :Date: |today|
 
+This documentation describes how to get started with the course
+
+`Github respository <https://github.com/staxmetrics/python_for_the_financial_economist>`_
+
+
 
 .. toctree::
    :maxdepth: 2

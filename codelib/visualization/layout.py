@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from matplotlib import cycler
+import matplotlib as mpl
 
 from typing import Tuple, List, NoReturn
 
