@@ -18,7 +18,7 @@ This documentation describes how to get started with the course
 .. toctree::
    :maxdepth: 2
 
-   getting_started/index
-   user_guide/index
-   api_reference/index
+   source/getting_started/index
+   source/user_guide/index
+   source/api_reference/index
 
