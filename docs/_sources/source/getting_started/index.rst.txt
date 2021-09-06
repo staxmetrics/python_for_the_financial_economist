@@ -89,7 +89,7 @@ The `requirements.txt` file contains the majority of the python packages needed 
 
 .. code-block:: console
 
-    pip install --user requirements.txt
+    pip install -r requirements.txt
 
 
 Folder structure
