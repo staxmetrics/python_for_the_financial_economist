@@ -1,4 +1,4 @@
-Getting started
+pyGetting started
 ===============
 
 This note describes to get started with the course *Python for the Financial Economist* including installation of relevant software.
