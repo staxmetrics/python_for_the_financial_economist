@@ -1,4 +1,4 @@
-pyGetting started
+Getting started
 ===============
 
 This note describes to get started with the course *Python for the Financial Economist* including installation of relevant software.
@@ -48,17 +48,28 @@ Most of the relevant course material can be found in the `github repository <htt
 To clone the github repository (the master branch), open Git Bash and navigate to the folder where you want the local branch.
 I use the folder `C:\\code` for repositories.
 
+In Git Bash type
+
 .. code-block::
+
     cd c:\code
     git clone https://github.com/staxmetrics/python_for_the_financial_economist.git
 
-Configuration of virtual environment
-____________________________________
 
-It is recommended to be working with different `virtual environment <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment>`_
-for different projects. This allows us to have control over which specific packages and versions of these packages that we are using.
+Alternatively, it will also be possible directly in PyCharm. Navigate to VCS->Git->Clone.
+
+Now you will have a local version of the github repository on your computer!
 
 After you have cloned the github repository, you can `right click` on the folder and choose `Open Folder As PyCharm Project`.
+If this not work, then you can open a specific project from PyCharm.
+
+Configuration of virtual environment (optional)
+-----------------------------------------------
+
+It is possible to use the Python system interpreter.
+
+However, it is recommended to be working with different `virtual environments <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment>`_
+for different projects. This allows us to have control over which specific packages and versions of these packages that we are using.
 
 After you have opened the project, then we need to configure the virtual environment. Go to `File > Settings > Project: Python for ...` and
 select `Python interpreter`. Press the symbol in the red circle (see below) and select `Add`
@@ -144,3 +155,34 @@ To be able to access the virtual environment from a Jupyter notebook, we need ru
     python -m ipykernel install --user --name=name_of_venv
 
 See e.g. `this blog <https://janakiev.com/blog/jupyter-virtual-envs/>`_ for further details.
+
+
+Pulling newest update to local repository
+----------------------------------------
+
+I will continuously add new material to the github repository. To pull the newest version, you need to download it to your computer.
+This can be done directly from PyCharm by navigating to VCS->Git->Pull (on a Windows machine).
+
+Working with your own code and notebooks
+----------------------------------------
+
+It should be noted that if you just start working on the master branch in the repository, then you will likely get `merge conflicts`
+when trying to pull changes from the github (remote) repository.
+
+There are several possibilities to work with your own code including
+
+New branch in the repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You may make a new branch in the repository `python_for_the_financial_economist`. You will then have to merge changes to the master branch into your own branch
+to have the newest material.
+
+New repository
+^^^^^^^^^^^^^^
+
+You can create your own repository.
+
+A folder with code and notebooks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The simplest approach will be to simple have a folder somewhere on your computer with notebooks and scripts.
