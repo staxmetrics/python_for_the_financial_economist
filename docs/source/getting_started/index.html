@@ -182,6 +182,11 @@
   <a class="reference internal nav-link" href="#github-repository">
    Github repository
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration-of-virtual-environment-optional">
+   Configuration of virtual environment (optional)
+  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#install-relevant-packages">
@@ -203,6 +208,33 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#access-virtual-environment-in-jupyter-notebook">
      Access virtual environment in Jupyter notebook
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pulling-newest-update-to-local-repository">
+   Pulling newest update to local repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-your-own-code-and-notebooks">
+   Working with your own code and notebooks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-branch-in-the-repository">
+     New branch in the repository
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-repository">
+     New repository
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-folder-with-code-and-notebooks">
+     A folder with code and notebooks
     </a>
    </li>
   </ul>
@@ -261,9 +293,21 @@ Johan</p>
 <p>Most of the relevant course material can be found in the <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a>.</p>
 <p>To clone the github repository (the master branch), open Git Bash and navigate to the folder where you want the local branch.
 I use the folder <em class="xref py py-obj">C:\code</em> for repositories.</p>
-<p>It is recommended to be working with different <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">virtual environment</a>
+<p>In Git Bash type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">c</span><span class="p">:</span>\<span class="n">code</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">staxmetrics</span><span class="o">/</span><span class="n">python_for_the_financial_economist</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Alternatively, it will also be possible directly in PyCharm. Navigate to VCS-&gt;Git-&gt;Clone.</p>
+<p>Now you will have a local version of the github repository on your computer!</p>
+<p>After you have cloned the github repository, you can <em class="xref py py-obj">right click</em> on the folder and choose <em class="xref py py-obj">Open Folder As PyCharm Project</em>.
+If this not work, then you can open a specific project from PyCharm.</p>
+</div>
+<div class="section" id="configuration-of-virtual-environment-optional">
+<h2>Configuration of virtual environment (optional)<a class="headerlink" href="#configuration-of-virtual-environment-optional" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to use the Python system interpreter.</p>
+<p>However, it is recommended to be working with different <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">virtual environments</a>
 for different projects. This allows us to have control over which specific packages and versions of these packages that we are using.</p>
-<p>After you have cloned the github repository, you can <em class="xref py py-obj">right click</em> on the folder and choose <em class="xref py py-obj">Open Folder As PyCharm Project</em>.</p>
 <p>After you have opened the project, then we need to configure the virtual environment. Go to <em class="xref py py-obj">File &gt; Settings &gt; Project: Python for …</em> and
 select <em class="xref py py-obj">Python interpreter</em>. Press the symbol in the red circle (see below) and select <em class="xref py py-obj">Add</em></p>
 <a class="reference internal image-reference" href="../../_images/virt_env_1.jpg"><img alt="../../_images/virt_env_1.jpg" class="align-center" src="../../_images/virt_env_1.jpg" style="width: 1362.1999999999998px; height: 408.09999999999997px;" /></a>
@@ -317,6 +361,30 @@ applying the command</p>
 </pre></div>
 </div>
 <p>See e.g. <a class="reference external" href="https://janakiev.com/blog/jupyter-virtual-envs/">this blog</a> for further details.</p>
+</div>
+</div>
+<div class="section" id="pulling-newest-update-to-local-repository">
+<h2>Pulling newest update to local repository<a class="headerlink" href="#pulling-newest-update-to-local-repository" title="Permalink to this headline">¶</a></h2>
+<p>I will continuously add new material to the github repository. To pull the newest version, you need to download it to your computer.
+This can be done directly from PyCharm by navigating to VCS-&gt;Git-&gt;Pull (on a Windows machine).</p>
+</div>
+<div class="section" id="working-with-your-own-code-and-notebooks">
+<h2>Working with your own code and notebooks<a class="headerlink" href="#working-with-your-own-code-and-notebooks" title="Permalink to this headline">¶</a></h2>
+<p>It should be noted that if you just start working on the master branch in the repository, then you will likely get <em class="xref py py-obj">merge conflicts</em>
+when trying to pull changes from the github (remote) repository.</p>
+<p>There are several possibilities to work with your own code including</p>
+<div class="section" id="new-branch-in-the-repository">
+<h3>New branch in the repository<a class="headerlink" href="#new-branch-in-the-repository" title="Permalink to this headline">¶</a></h3>
+<p>You may make a new branch in the repository <em class="xref py py-obj">python_for_the_financial_economist</em>. You will then have to merge changes to the master branch into your own branch
+to have the newest material.</p>
+</div>
+<div class="section" id="new-repository">
+<h3>New repository<a class="headerlink" href="#new-repository" title="Permalink to this headline">¶</a></h3>
+<p>You can create your own repository.</p>
+</div>
+<div class="section" id="a-folder-with-code-and-notebooks">
+<h3>A folder with code and notebooks<a class="headerlink" href="#a-folder-with-code-and-notebooks" title="Permalink to this headline">¶</a></h3>
+<p>The simplest approach will be to simple have a folder somewhere on your computer with notebooks and scripts.</p>
 </div>
 </div>
 </div>
