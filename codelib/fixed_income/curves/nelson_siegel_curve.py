@@ -307,7 +307,7 @@ class NelsonSiegelCurve(IRateCurve):
                                      theta: float = None,
                                      starting_params: np.ndarray = None,
                                      grid: slice = None,
-                                     Ns=99999):
+                                     grid_points=99999):
 
         if theta is not None:
 
@@ -332,7 +332,7 @@ class NelsonSiegelCurve(IRateCurve):
                 theta = optimize.brute(cls.objective_function_grid,
                                        ranges=(grid, ),
                                        args=(payments_dates, cash_flow_matrix, market_prices, starting_params),
-                                       Ns=Ns)
+                                       Ns=grid_points)
 
                 return cls.create_from_cash_flow_matrix(payments_dates, cash_flow_matrix,
                                                         market_prices, theta[0])
