@@ -3,24 +3,24 @@ from enum import Enum, unique
 import numpy as np
 from scipy.optimize import fmin_l_bfgs_b
 
-from typing import List
+from typing import List, Union
+
 
 """
 Meucci - Fully Flexible Views: Theory and practice 
 """
 
+
 @unique
 class ViewType(Enum):
-
-    Equality = 0
-    LargerThan = 1
-    SmallerThan = 2
+    Equality = 'EQ'
+    LargerThan = 'GEQ'
+    SmallerThan = 'LEQ'
 
 
 class View(abc.ABC):
 
-    def __init__(self, view_type: ViewType):
-
+    def __init__(self, view_type: str):
         """
         Constructor
 
@@ -30,7 +30,7 @@ class View(abc.ABC):
             Specifies view type.
         """
 
-        self.view_type = view_type
+        self.view_type = ViewType(view_type.upper())
 
     @abc.abstractmethod
     def get_constraint_matrix(self):
@@ -42,13 +42,11 @@ class View(abc.ABC):
 
 
 class MeanView(View):
-
     """
     Class that implements a mean view.
     """
 
-    def __init__(self, view_type: ViewType, factor: np.ndarray, mean_target: float):
-
+    def __init__(self, view_type: str, factor: np.ndarray, mean_target: float):
         """
         Constructor
 
@@ -68,22 +66,19 @@ class MeanView(View):
         self.constraint_vector = mean_target
 
     def get_constraint_matrix(self):
-
         return self.constraint_matrix
 
     def get_constraint_vector(self):
-
         return self.constraint_vector
 
 
 class VolatilityView(View):
-
     """
     Class that implements a volatility view.
+
     """
 
-    def __init__(self, view_type: ViewType, factor: np.ndarray, expected_value: float, vol_target: float):
-
+    def __init__(self, view_type: str, factor: np.ndarray, expected_value: float, vol_target: float):
         """
         Constructor
 
@@ -99,10 +94,10 @@ class VolatilityView(View):
             Volatility of factor under view.
         """
 
-        super(VolatilityView, self).__init__(view_type)
+        super().__init__(view_type)
 
-        self.constraint_matrix = factor**2
-        self.constraint_vector = vol_target**2 + expected_value**2
+        self.constraint_matrix = factor ** 2
+        self.constraint_vector = vol_target ** 2 + expected_value ** 2
 
     def get_constraint_matrix(self):
         return self.constraint_matrix
@@ -112,12 +107,11 @@ class VolatilityView(View):
 
 
 class CorrelationView(View):
-
     """
     Class that implements a correlation view.
     """
 
-    def __init__(self, view_type: ViewType, first_factor: np.ndarray, second_factor: np.ndarray,
+    def __init__(self, view_type: str, first_factor: np.ndarray, second_factor: np.ndarray,
                  first_expected_value: float, second_expected_value: float, first_vol: float,
                  second_vol: float, correlation_target: float):
         """
@@ -128,9 +122,9 @@ class CorrelationView(View):
         view_type
             Specifies view type.
         first_factor:
-            Factor for which we have a view
+            Factor for which we have a view.
         second_factor:
-            Factor for which we have a view
+            Factor for which we have a view.
         first_expected_value:
             Expected value of first factor.
         second_expected_value:
@@ -138,12 +132,12 @@ class CorrelationView(View):
         first_vol:
             Volatility of first factor.
         second_vol:
-            Volatility of second factor
+            Volatility of second factor.
         correlation_target:
             Correlation target under view.
         """
 
-        super(CorrelationView, self).__init__(view_type)
+        super().__init__(view_type)
 
         self.constraint_matrix = first_factor * second_factor
         self.constraint_vector = correlation_target * first_vol * second_vol + first_expected_value * second_expected_value
@@ -176,7 +170,7 @@ class ProbabilitySolver:
         self.total_constraint_matrix = None
         self.total_constraint_matrix_t = None
         self.total_constraint_vector = None
-        self.is_inequality_constraint = []
+        self.inequality_constraint_indicators = []
 
         # prepare views for solving probabilities
         self.prepare_constraints(views)
@@ -200,11 +194,10 @@ class ProbabilitySolver:
 
         """
 
-        if isinstance(constraint_vector, float) or isinstance(constraint_vector, float):
-            self.is_inequality_constraint.append(is_inequality)
-
+        if isinstance(constraint_vector, (float, int)):
+            self.inequality_constraint_indicators.append(is_inequality)
         else:
-            self.is_inequality_constraint.append([is_inequality for _ in constraint_vector])
+            self.inequality_constraint_indicators.append([is_inequality for constraint in constraint_vector])
 
     def prepare_constraints(self, views: List[View]):
 
@@ -214,7 +207,7 @@ class ProbabilitySolver:
         Parameters
         ----------
         views:
-            List of vies.
+            List of views.
 
         Returns
         -------
@@ -308,10 +301,11 @@ class ProbabilitySolver:
         """
 
         # initial parameters
-        init_params = np.repeat(0.01, len(self.is_inequality_constraint))
+        init_params = np.repeat(0.01, len(self.inequality_constraint_indicators))
 
         # add zero bound for inequality constraints
-        bounds = [(0.0, None) if _ else (None, None) for _ in self.is_inequality_constraint]
+        bounds = [(0.0, None) if is_inequality else (None, None)
+                  for is_inequality in self.inequality_constraint_indicators]
 
         # optimization
         # TODO:: Add analytical gradient and hessian
@@ -322,7 +316,92 @@ class ProbabilitySolver:
         probs = self.calculate_probabilities(opt_params)
 
         if np.abs(1.0 - np.sum(probs)) > 0.001:
-
             raise Exception('Entropy optimization did not converge')
 
         return probs
+
+
+def effective_sample_size_entropy(probabilities: np.ndarray, relative: bool = False):
+    """
+    Parameters
+    ----------
+    probabilities:
+        vector of probabilities
+    relative:
+        if True returns the relative number of effective probabilities.
+
+    Returns
+    -------
+    number of effective probabilities
+    """
+
+    j = len(probabilities)
+    j_hat = np.exp(-np.sum(probabilities * np.log(probabilities)))
+
+    return j_hat / j if relative else j_hat
+
+
+"""
+Moments, statistics, etc.
+"""
+
+
+def weighted_percentile(x: np.array, p: Union[float, np.ndarray], probs=None, axis=0):
+
+    """
+    Function that calculates weighted percentiles
+
+    Parameters
+    ----------
+    x:
+        Array-like data for which to calculate percentiles.
+    p:
+        Percentile(s) to calculate.
+    probs:
+        Probabilities / weights
+    axis
+        Axis over which to calculate.
+
+    Returns
+    -------
+    np.array
+        Percentiles
+
+    """
+    x = np.asarray(x)
+    ndim = x.ndim
+
+    # make sure the probs are set
+    if probs is None:
+        if ndim == 1:
+            probs = np.ones_like(x) / len(x)
+        elif axis == 0:
+            length = x.shape[0]
+            probs = np.ones(length) / length
+        elif axis == 1:
+            length = x.shape[1]
+            probs = np.ones(length) / length
+        else:
+            raise ValueError('probs cannot be set')
+
+    if ndim == 1:
+
+        # get sorted index
+        index_sorted = np.argsort(x)
+
+        # get sorted data (x)
+        sorted_x = x[index_sorted]
+
+        # sorted probs
+        sorted_probs = probs[index_sorted]
+
+        # get cumulated probs
+        cum_sorted_probs = np.cumsum(sorted_probs)
+
+        pn = (cum_sorted_probs - 0.5 * sorted_probs) / cum_sorted_probs[-1]
+
+        return np.interp(p, pn, sorted_x, left=sorted_x[0], right=sorted_x[-1])
+
+    else:
+
+        return np.apply_along_axis(weighted_percentile, axis, x, p, probs)
