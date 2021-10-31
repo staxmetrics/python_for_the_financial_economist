@@ -1,12 +1,7 @@
 import numpy as np
-from scipy import stats
-from scipy import optimize
-from scipy.optimize import minimize
 from scipy.linalg import block_diag
-from functools import reduce
-
 from sklearn.neighbors import KernelDensity
-from sklearn.covariance import LedoitWolf
+
 
 from typing import Tuple
 
@@ -15,7 +10,22 @@ Utilities
 """
 
 
-def cov_to_corr_matrix(cov_mat):
+def cov_to_corr_matrix(cov_mat: np.ndarray) -> np.ndarray:
+
+    """
+    Transform a covariance matrix to a correlation matrix.
+
+    Parameters
+    ----------
+    cov_mat:
+        Covariance matrix.
+
+    Returns
+    -------
+    np.ndarray
+        Correlation matrix.
+
+    """
 
     vols = np.sqrt(np.diag(cov_mat))
     corr_mat = cov_mat / np.outer(vols, vols)
@@ -24,7 +34,24 @@ def cov_to_corr_matrix(cov_mat):
     return corr_mat
 
 
-def corr_to_cov_matrix(corr_mat, vols):
+def corr_to_cov_matrix(corr_mat: np.ndarray, vols: np.ndarray) -> np.ndarry:
+
+    """
+    Transform a covariance matrix to a correlation matrix.
+
+    Parameters
+    ----------
+    corr_mat:
+        Correlation matrix.
+    vols:
+        Volatilies.
+
+    Returns
+    -------
+    np.ndarray
+        Covariance matrix.
+
+    """
 
     cov_mat = corr_mat * np.outer(vols, vols)
 
@@ -36,7 +63,24 @@ Marcencko pastur density
 """
 
 
-def marchencko_pastur_bounds(sigma, ratio):
+def marchencko_pastur_bounds(sigma: float, ratio: float) -> Tuple[float, float]:
+
+    """
+    Calculates Marcencko-Pastur bounds
+
+    Parameters
+    ----------
+    sigma:
+        Sigma parameter.
+    ratio:
+        Ratio between num. of variables and num. of observations
+
+    Returns
+    -------
+    Tuple[float, float]
+        Bounds.
+
+    """
 
     sigma2 = sigma ** 2
 
@@ -48,7 +92,26 @@ def marchencko_pastur_bounds(sigma, ratio):
     return bounds
 
 
-def marchencko_pastur_density(x, sigma, ratio):
+def marchencko_pastur_density(x: np.ndarray, sigma: float, ratio: float) -> np.ndarray:
+
+    """
+    Calculates Marcencko-Pastur density
+
+    Parameters
+    ----------
+    x:
+        Points at which to evaluate the density.
+    sigma:
+       Sigma parameter.
+    ratio:
+       Ratio between num. of variables and num. of observations
+
+    Returns
+    -------
+    np.ndarray
+       Densitiy.
+
+    """
 
     lower, upper = marchencko_pastur_bounds(sigma, ratio)
 
@@ -350,6 +413,7 @@ def tsm_denoised_corr_mat(eigenvalues: np.ndarray, eigenvectors: np.ndarray, num
 Check and fix positive semi-definite matrix
 """
 
+
 def check_positive_semi_definite(matrix: np.ndarray):
     """
     Checks that a symmetric square matrix is positive semi-deinite.
@@ -414,6 +478,7 @@ def fix_nonpositive_semidefinite(matrix: np.ndarray, method="spectral", scale_di
 """
 Covariance shrinkage estimators
 """
+
 
 def ledoit_wolf_constant_variance(data: np.ndarray, demean: bool = True) -> np.ndarray:
     """
