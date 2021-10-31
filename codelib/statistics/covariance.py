@@ -34,7 +34,7 @@ def cov_to_corr_matrix(cov_mat: np.ndarray) -> np.ndarray:
     return corr_mat
 
 
-def corr_to_cov_matrix(corr_mat: np.ndarray, vols: np.ndarray) -> np.ndarry:
+def corr_to_cov_matrix(corr_mat: np.ndarray, vols: np.ndarray) -> np.ndarray:
 
     """
     Transform a covariance matrix to a correlation matrix.
