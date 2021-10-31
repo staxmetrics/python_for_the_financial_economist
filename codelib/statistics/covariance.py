@@ -2,6 +2,7 @@ import numpy as np
 from scipy import stats
 from scipy import optimize
 from scipy.optimize import minimize
+from scipy.linalg import block_diag
 from functools import reduce
 
 from sklearn.neighbors import KernelDensity
@@ -69,9 +70,23 @@ Code adapted from Marcos M. Lopéz de Prado (2020), "Machine Learning for Asset 
 """
 
 
-def simulate_random_cov_mat(num_var, num_factors):
+def simulate_random_cov_mat(num_var: int, num_factors: int) -> np.ndarray:
+
     """
-    Simulate a random covariance matrix with some dependence
+    Simulates a random covariance matrix with some dependence
+
+    Parameters
+    ----------
+    num_var:
+        Number of variables.
+    num_factors:
+        Number of factors
+
+    Returns
+    -------
+    np.ndarray
+        Covariance matrix.
+
     """
 
     x = np.random.normal(size=(num_var, num_factors))
@@ -81,12 +96,106 @@ def simulate_random_cov_mat(num_var, num_factors):
     return cov_mat
 
 
-def simulate_cov_mat_noise_and_signal(num_var, num_factors, num_obs, alpha):
+def simulate_cov_mat_noise_and_signal(num_var: int, num_factors: int, num_obs: int, alpha: float):
+
+    """
+    Simulate a covariance matrix with noise and signal
+
+    Parameters
+    ----------
+    num_var:
+        Number of variables.
+    num_factors:
+        Number of factors.
+    num_obs:
+        Number of obervations.
+    alpha:
+        Weight on noisy covariance matrix.
+
+    Returns
+    -------
+    np.ndarray
+        Covariance matrix.
+
+    """
+
     cov_mat_noise = np.cov(np.random.normal(size=(num_obs, num_var)), rowvar=False)
     cov_mat_signal = simulate_random_cov_mat(num_var, num_factors)
     cov_mat = alpha * cov_mat_noise + (1 - alpha) * cov_mat_signal
 
     return cov_mat
+
+
+def form_block_corr_matrix(num_blocks: int, block_size: int, block_corr: float) -> np.ndarray:
+
+    """
+    Create a block correlation matrix with a number of equal size blocks.
+    Each block have the same inter block correlation.
+
+    Parameters
+    ----------
+    num_blocks:
+        Number of blocks
+    block_size:
+        Block size.
+    block_corr
+        Inter block correlation.
+
+    Returns
+    -------
+    np.ndarray
+        Correlation matrix.
+
+    """
+
+    block = np.ones((block_size, block_size)) * block_corr
+    np.fill_diagonal(block, 1.0)
+
+    corr_mat = block_diag(*([block] * num_blocks))
+
+    return corr_mat
+
+
+def form_true_cov_and_mean(num_blocks: int, block_size: int, block_corr: float) -> Tuple[np.ndarray, np.ndarray]:
+
+    """
+    Creates a covariance matrix and mean vector
+
+    Parameters
+    ----------
+    num_blocks:
+        Number of blocks
+    block_size:
+        Block size.
+    block_corr
+        Inter block correlation.
+
+    Returns
+    -------
+    Tuple[np.ndarray, np.ndarray]
+        Covariance matrix, mean vector
+    """
+
+    # generate corr mat
+    corr_mat = form_block_corr_matrix(num_blocks, block_size, block_corr)
+    num_assets = corr_mat.shape[0]
+
+    idx = np.arange(num_assets)
+    np.random.shuffle(idx)
+    idx_selector = np.tile(idx.reshape(num_assets, 1), num_assets)
+
+    corr_mat = corr_mat[idx_selector, idx_selector.T]
+
+    # generate vols
+    vols = np.random.uniform(0.05, 0.2, num_assets)
+
+    # generate cov mat
+    cov_mat = corr_to_cov_matrix(corr_mat, vols)
+
+    # generate means (all assets have same sharpe ratio)
+    mu = np.random.normal(vols, vols, size=num_assets)
+
+    return mu, cov_mat
 
 
 """
@@ -95,7 +204,28 @@ Code adapted from Marcos M. Lopéz de Prado (2020), "Machine Learning for Asset 
 """
 
 
-def fit_kde(eigenvalues, kernel="gaussian", bandwidth=0.01, x=None):
+def fit_kde(eigenvalues: np.ndarray, kernel: str = "gaussian", bandwidth: float = 0.01, x: np.ndarray = None):
+
+    """
+    Fits a kernel density to the eigenvalues
+
+    Parameters
+    ----------
+    eigenvalues:
+        Eigenvalues.
+    kernel:
+        Kernel type.
+    bandwidth:
+        Bandwidth.
+    x:
+        Points where to eveluate the pdf.
+
+    Returns
+    -------
+    np.ndarray
+        Densities.
+
+    """
 
     if len(eigenvalues.shape) == 1:
         eigenvalues = eigenvalues.reshape(-1, 1)
@@ -111,7 +241,31 @@ def fit_kde(eigenvalues, kernel="gaussian", bandwidth=0.01, x=None):
     return np.exp(log_prob).flatten()
 
 
-def fitting_error(sigma, ratio, x, eigenvalues, kernel="gaussian", bandwidth=0.01):
+def fitting_error(sigma: float, ratio: float, x: np.ndarray, eigenvalues: np.ndarray,
+                  kernel: str = "gaussian", bandwidth: float = 0.01):
+
+    """
+    Calculates the fitting error of the Marchencko-Pastur distribution
+
+    Parameters
+    ----------
+    sigma:
+        Sigma paramter in Marchencko-Pastur distribution
+    ratio:
+        Ratio between dimension and num. obs.
+    x:
+        Points where to evaluate the pdf.
+    eigenvalues:
+        Eigenvalues.
+    kernel:
+        Kernel type.
+    bandwidth
+        Bandwith.
+
+    Returns
+    -------
+
+    """
 
     mp_density = marchencko_pastur_density(x, sigma, ratio)
 
@@ -120,13 +274,27 @@ def fitting_error(sigma, ratio, x, eigenvalues, kernel="gaussian", bandwidth=0.0
     return np.mean(np.square(mp_density - kde_density))
 
 
-def crem_denoised_corr_mat(eigenvalues, eigenvectors, num_factors):
+def crem_denoised_corr_mat(eigenvalues: np.ndarray, eigenvectors: np.ndarray, num_factors: int) -> np.ndarray:
 
     """
     Denoises correlation matrix by fixing random eigenvalues
 
+    Parameters
+    ----------
+    eigenvalues:
+        Sorted eigenvalues.
+    eigenvectors:
+        Sorted eigenvectors
+    num_factors:
+        Number of factors.
+
+    Returns
+    -------
+    np.ndarray
+        Denoised correlation matrix.
 
     """
+
     eig_vals = eigenvalues.copy()
     eig_vals[num_factors:] = eig_vals[num_factors:].sum() / float(len(eig_vals) - num_factors)
     eig_vals = np.diag(eig_vals)
@@ -137,14 +305,32 @@ def crem_denoised_corr_mat(eigenvalues, eigenvectors, num_factors):
     return corr_mat
 
 
-def tsm_denoised_corr_mat(eigenvalues, eigenvectors, num_factors, alpha=0.0):
+def tsm_denoised_corr_mat(eigenvalues: np.ndarray, eigenvectors: np.ndarray, num_factors: int,
+                          alpha: float = 0.0) -> np.ndarray:
+
     """
     Denoises correlation matrix by shrinkage on eigenvectors
 
     Target shrinkage method.
 
+    Parameters
+    ----------
+    eigenvalues:
+        Sorted eigenvalues.
+    eigenvectors:
+        Sorted eigenvectors
+    num_factors:
+        Number of factors.
+    alpha:
+        Weight.
+
+    Returns
+    -------
+    np.ndarray
+        Denoised correlation matrix.
 
     """
+
     eig_vals_l = np.diag(eigenvalues[:num_factors])
     eig_vals_r = np.diag(eigenvalues[num_factors:])
 
