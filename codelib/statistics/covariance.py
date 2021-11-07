@@ -44,7 +44,7 @@ def corr_to_cov_matrix(corr_mat: np.ndarray, vols: np.ndarray) -> np.ndarray:
     corr_mat:
         Correlation matrix.
     vols:
-        Volatilies.
+        Volatilities.
 
     Returns
     -------
