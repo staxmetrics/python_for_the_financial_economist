@@ -346,6 +346,37 @@ Moments, statistics, etc.
 """
 
 
+def calculate_variance(x: np.ndarray, probs=None, axis=0):
+
+    m = np.average(x, weights=probs, axis=axis)
+
+    return np.average(np.square(x - m), weights=probs)
+
+
+def calculate_std(x: np.ndarray, probs=None, axis=0):
+
+    return np.sqrt(calculate_variance(x, probs, axis))
+
+
+def calculate_covariance(x, y, probs=None, axis=0):
+
+    m_x = np.average(x, weights=probs, axis=axis)
+    m_y = np.average(y, weights=probs, axis=axis)
+
+    m_xy = np.average(x*y, weights=probs, axis=axis)
+
+    return m_xy - m_x * m_y
+
+
+def calculate_correlation(x, y, probs=None, axis=0):
+
+    c = calculate_covariance(x, y, probs, axis)
+    std_x = calculate_std(x, probs, axis)
+    std_y = calculate_std(y, probs, axis)
+
+    return c / (std_x * std_y)
+
+
 def weighted_percentile(x: np.array, p: Union[float, np.ndarray], probs=None, axis=0):
 
     """
