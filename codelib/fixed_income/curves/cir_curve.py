@@ -12,25 +12,10 @@ from scipy import optimize
 from typing import Union, Dict
 
 
-class VasicekCurve(IRateCurve):
+class CIRCurve(IRateCurve):
 
     """
-    Class that implements a Vasicek Curve (cont. compounding)
-
-    The zero rate for a given maturity, :math:`\\tau`,  is defined by
-
-    .. math::
-
-        r_{\\tau} = y_\\infty + \\frac{b(\\tau)}{\\tau} \\left(\\frac{\\beta^2}{4 \\kappa} b(\\tau) + r_t -
-        y_\\infty \\right)
-
-    where
-
-    .. math::
-
-        y_\\infty  = \\theta - \\frac{\\beta^2}{2 \\kappa^2}
-
-
+    Class that implements a CIR Curve (cont. compounding)
     """
 
     def __init__(self,
@@ -61,7 +46,7 @@ class VasicekCurve(IRateCurve):
         self.theta = theta
         self.kappa = kappa
         self.beta = beta
-        self.y_infty = theta - beta**2 / (2 * kappa**2)
+        self.gamma = np.sqrt(self.kappa**2 + 2 * self.beta**2)
 
     def zero_rate(self, tenor: float) -> float:
 
@@ -79,8 +64,12 @@ class VasicekCurve(IRateCurve):
             Zero rate for the specific tenor.
         """
 
-        b = 1 / self.kappa * (1 - np.exp(- self.kappa * tenor))
-        a = self.y_infty * (tenor - b) + self.beta**2 / (4 * self.kappa) * b**2
+        temp1 = np.exp(self.gamma * tenor) - 1.0
+
+        b = 2 * temp1 / ((self.gamma + self.kappa) * temp1 + 2 * self.gamma)
+        a = -2 * self.kappa * self.theta / (self.beta**2) * (np.log(2 * self.gamma) +
+                                                             0.5 * (self.kappa + self.gamma) * tenor -
+                                                             np.log((self.kappa + self.gamma) * temp1 + 2 * self.gamma))
 
         rate = a / tenor + b / tenor * self.short_rate
 
@@ -122,8 +111,12 @@ class VasicekCurve(IRateCurve):
             Zero rates for specific tenors.
         """
 
-        b = 1 / self.kappa * (1 - np.exp(- self.kappa * tenors))
-        a = self.y_infty * (tenors - b) + self.beta**2 / (4 * self.kappa) * b**2
+        temp1 = np.exp(self.gamma * tenors) - 1.0
+
+        b = 2 * temp1 / ((self.gamma + self.kappa) * temp1 + 2 * self.gamma)
+        a = -2 * self.kappa * self.theta / (self.beta**2) * (np.log(2 * self.gamma) +
+                                                             0.5 * (self.kappa + self.gamma) * tenors -
+                                                             np.log((self.kappa + self.gamma) * temp1 + 2 * self.gamma))
 
         rate = a / tenors + b / tenors * self.short_rate
 
