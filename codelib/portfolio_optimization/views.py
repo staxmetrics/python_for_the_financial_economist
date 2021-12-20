@@ -149,6 +149,39 @@ class CorrelationView(View):
         return self.constraint_vector
 
 
+class QuantileView(View):
+    """
+    Class that implements a quantile view.
+    """
+
+    def __init__(self, view_type: str, factor: np.ndarray, quantile: float, quantile_value: float):
+        """
+        Constructor
+
+        Parameters
+        ----------
+        view_type
+            Specifies view type.
+        factor:
+            Factor for which we have a view
+        quantile:
+            Quantile, e.g. 0.05 for 5% quantile.
+        quantile_value:
+            Quantile value.
+        """
+
+        super().__init__(view_type)
+
+        self.constraint_matrix = (factor > quantile_value).astype(int)
+        self.constraint_vector = 1.0 - quantile
+
+    def get_constraint_matrix(self):
+        return self.constraint_matrix
+
+    def get_constraint_vector(self):
+        return self.constraint_vector
+
+
 class ProbabilitySolver:
 
     def __init__(self, initial_probs: np.ndarray, views: List[View]):

@@ -53,7 +53,7 @@ def fan_chart(x: ndarray, y: ndarray, **kwargs) -> NoReturn:
         :include-source:
 
             import numpy as np
-            from corelib.plotting import fan_chart
+            from codelib.visualization.base import fan_chart
             data = np.array([np.random.normal(size=1000) * s for s in np.arange(0, 1, 0.1)])
             percentiles = np.percentile(data, [10, 20, 50, 80, 90], axis=1)
             fan_chart(np.arange(1, 11, 1), percentiles, labels=['80% CI', '60% CI', 'median'])
