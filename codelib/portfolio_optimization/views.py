@@ -410,7 +410,7 @@ def calculate_correlation(x, y, probs=None, axis=0):
     return c / (std_x * std_y)
 
 
-def weighted_percentile(x: np.array, p: Union[float, np.ndarray], probs=None, axis=0):
+def weighted_percentile(x: np.ndarray, p: Union[float, np.ndarray], probs=None, axis=0):
 
     """
     Function that calculates weighted percentiles
