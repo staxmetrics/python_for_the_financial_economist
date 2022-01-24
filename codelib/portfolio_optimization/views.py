@@ -410,6 +410,26 @@ def calculate_correlation(x, y, probs=None, axis=0):
     return c / (std_x * std_y)
 
 
+def calculate_skewness(x: np.ndarray, probs=None, axis=0):
+    m_x = np.average(x, weights=probs, axis=axis)
+    m_x_3 = np.average(x ** 3, weights=probs, axis=axis)
+    std = calculate_std(x, probs=probs, axis=axis)
+
+    return (m_x_3 - 3 * m_x * std ** 2 - m_x ** 3) / (std ** 3)
+
+
+def calculate_kurtosis(x: np.ndarray, probs=None, excess=True, axis=0):
+    x_d = x - np.average(x, weights=probs, axis=axis)
+    m_x_d_4 = np.average(x_d ** 4, weights=probs, axis=axis)
+
+    std = calculate_std(x, probs=probs, axis=axis)
+
+    if excess:
+        return m_x_d_4 / (std ** 4) - 3.0
+    else:
+        return m_x_d_4 / (std ** 4)
+
+
 def weighted_percentile(x: np.ndarray, p: Union[float, np.ndarray], probs=None, axis=0):
 
     """
