@@ -34,7 +34,7 @@ Python
 Navigate to `python download <https://www.python.org/downloads/>`_ and download and install relevant Python release. I have installed `Python 3.8`.
 
 PyCharm
-^^^^^^^^
+^^^^^^^
 
 We will use the `PyCharm` IDE in this course that can de downloaded `here <https://www.jetbrains.com/pycharm/download/#section=windows>`_. Select the `professional` version.
 
@@ -176,7 +176,7 @@ See e.g. `this blog <https://janakiev.com/blog/jupyter-virtual-envs/>`_ for furt
 
 
 Pulling newest update to local repository
-----------------------------------------
+-----------------------------------------
 
 I will continuously add new material to the github repository. To pull the newest version, you need to download it to your computer.
 This can be done directly from PyCharm by navigating to VCS->Git->Pull (on a Windows machine).
