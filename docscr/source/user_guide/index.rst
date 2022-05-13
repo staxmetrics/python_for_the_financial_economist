@@ -20,7 +20,7 @@ If the course material is downloaded either directly or using `git`, we can use 
 
 If we are using `colab`, we can directly install relevant modules using the following
 
-.. code-block:: notebook
+.. code-block::
 
     import os
 
@@ -32,7 +32,7 @@ If we are using `colab`, we can directly install relevant modules using the foll
 
 Alternatively, we can use
 
-.. code-block:: notebook
+.. code-block::
 
     import os
     import sys
