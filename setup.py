@@ -7,7 +7,8 @@ setup(
     author_email="jsj.fi@cbs.dk",
     description=("Helper functions for the course"
                  "'Python for the Financial Economist'"),
-    packages=find_packages(),
+    packages=find_packages(exclude=['tests', 'docs', 'docscr']),
+    package_dir={'python_for_the_financial_economist':'codelib'},
     classifiers=['Programming Language :: Python :: 3'],
     python_requires='>=3.7',
     install_requires=['matplotlib==3.3.3', 'numpy==1.19.5', 'pandas==1.2.1', 'pandas-datareader==0.10.0',
