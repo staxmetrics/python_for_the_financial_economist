@@ -6,5 +6,6 @@ setup(
     author="Johan Stax Jakobsen",
     author_email="jsj.fi@cbs.dk",
     description=("Helper functions for the course"
-                 "'Python for the Financial Economist'")
+                 "'Python for the Financial Economist'"),
+    packages=['codelib']
 )
