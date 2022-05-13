@@ -3,12 +3,30 @@ Getting started
 
 This note describes to get started with the course *Python for the Financial Economist* including installation of relevant software.
 
-Best,
-Johan
+Most of the relevant course material can be found in the `github repository <https://github.com/staxmetrics/python_for_the_financial_economist>`_.
+
+There are several ways of starting working with the course material and coding in Python. Below, three different ways described.
+
+Anaconda installation
+---------------------
+
+A simple way of getting started is to install `Anaconda <https://www.anaconda.com/>`_.
+
+After the installation, you will have access to the `Anaconda Navigator` and `Anaconda Prompt` from which you have access to
+`jupyter notebooks` or `jupyter lab` which will use predominately in the course.
 
 
-Installation of relevant software
----------------------------------
+Google's colab
+--------------
+
+If you want to work directly in your browser without installing anything, then you can use `colab <https://colab.research.google.com/>`_.
+
+
+Development environment
+-----------------------
+
+The most advanced setup is to download `PyCharm` and interact directly with the course materiale using `git`. This approach
+will be suitable when developing own code libraries.
 
 Python
 ^^^^^^
