@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.stats as stats
 
+
 def calculate_cornish_fisher_percentile(alpha, mu, sigma, skew, kurt):
     """
     Calculates the percentile, alpha, based on the Cornish-Fisher approximation
