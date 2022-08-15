@@ -6,6 +6,32 @@ Moments, statistics, etc.
 """
 
 
+def calculate_mean(x: np.ndarray, probs=None, axis=0):
+
+    """
+    Calculates mean.
+
+    Parameters
+    ----------
+    x:
+        Data to calculate mean for.
+    probs:
+        Probabilities.
+    axis:
+        Axis over which to calculate.
+
+    Returns
+    -------
+    np.ndarray
+        Mean.
+
+    """
+
+    m = np.average(x, weights=probs, axis=axis)
+
+    return m
+
+
 def calculate_variance(x: np.ndarray, probs=None, axis=0):
 
     m = np.average(x, weights=probs, axis=axis)

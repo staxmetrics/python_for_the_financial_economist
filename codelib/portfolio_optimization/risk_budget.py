@@ -1,10 +1,11 @@
 import numpy as np
+from scipy import stats
 from typing import Tuple
 
 
 def calculate_marginal_risks(weights: np.ndarray, cov_mat: np.ndarray) -> np.ndarray:
     """
-    Function that calculates marginal risk
+    Function that calculates marginal risk using std. as portfolio risk measure
     Parameters
     ----------
     weights:
@@ -26,7 +27,7 @@ def calculate_marginal_risks(weights: np.ndarray, cov_mat: np.ndarray) -> np.nda
 
 def calculate_risk_contributions(weights: np.ndarray, cov_mat: np.ndarray) -> np.ndarray:
     """
-    Function that calculates risk contributions
+    Function that calculates risk contributions using std. as portfolio risk measure
 
     Parameters
     ----------
@@ -103,3 +104,43 @@ def weights_risk_budget_two_assets(sigma1: float, sigma2: float, rho: float, b: 
     w_opt = num / den
 
     return w_opt, 1 - w_opt
+
+
+"""
+Functions relevant for multivariate Gaussian distribution
+"""
+
+
+def calculate_marginal_risk_normal_var(weights: np.ndarray, mu: np.ndarray, cov_mat: np.ndarray, alpha: float = 0.05) -> np.ndarray:
+    """
+    Function that calculates marginal risk using Value-at-Risk as risk measure.
+    It is assumed that returns follow a normal distribution.
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights
+    mu:
+        Vector of expected returns
+    cov_mat:
+        Covariance matrix
+    alpha:
+        Confidence level
+
+    Returns
+    -------
+    np.ndarray
+        Marginal risks
+    """
+
+    ...
+
+"""
+Cornish Fisher Risk budgetting
+"""
+
+# https://rdrr.io/rforge/fPortfolio/src/R/risk-budgeting.R
+
+"""
+Functions relevant for scenario based estimation 
+"""
