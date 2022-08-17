@@ -6,7 +6,7 @@ Moments, statistics, etc.
 """
 
 
-def calculate_mean(x: np.ndarray, probs=None, axis=0):
+def calculate_mean(x: np.ndarray, probs: Union[np.ndarray, None]=None, axis=0) -> Union[float, np.ndarray]:
 
     """
     Calculates mean.
@@ -22,7 +22,7 @@ def calculate_mean(x: np.ndarray, probs=None, axis=0):
 
     Returns
     -------
-    np.ndarray
+    Union[float, np.ndarray]
         Mean.
 
     """
@@ -32,19 +32,78 @@ def calculate_mean(x: np.ndarray, probs=None, axis=0):
     return m
 
 
-def calculate_variance(x: np.ndarray, probs=None, axis=0):
+def calculate_variance(x: np.ndarray, probs: Union[np.ndarray, None] = None, axis=0) -> Union[float, np.ndarray]:
+
+    """
+    Calculates variance.
+
+    Parameters
+    ----------
+    x:
+        Data to calculate variance for.
+    probs:
+        Probabilities.
+    axis:
+        Axis over which to calculate.
+
+    Returns
+    -------
+    Union[float, np.ndarray]
+        Variance.
+
+    """
 
     m = np.average(x, weights=probs, axis=axis)
 
     return np.average(np.square(x - m), weights=probs)
 
 
-def calculate_std(x: np.ndarray, probs=None, axis=0):
+def calculate_std(x: np.ndarray, probs: Union[np.ndarray, None] = None, axis=0):
+
+    """
+    Calculates standard deviation.
+
+    Parameters
+    ----------
+    x:
+        Data to calculate standard deviation for.
+    probs:
+        Probabilities.
+    axis:
+        Axis over which to calculate.
+
+    Returns
+    -------
+    Union[float, np.ndarray]
+        Standard devation.
+
+    """
 
     return np.sqrt(calculate_variance(x, probs, axis))
 
 
-def calculate_covariance(x, y, probs=None, axis=0):
+def calculate_covariance(x: np.ndarray, y: np.ndarray, probs: Union[np.ndarray, None] = None, axis=0):
+
+    """
+    Calculates covariance between two variables.
+
+    Parameters
+    ----------
+    x:
+        First variable.
+    y:
+        Second variable.
+    probs:
+        Probabilities.
+    axis:
+        Axis over which to calculate.
+
+    Returns
+    -------
+    Union[float, np.ndarray]
+        Covariance.
+
+    """
 
     m_x = np.average(x, weights=probs, axis=axis)
     m_y = np.average(y, weights=probs, axis=axis)
@@ -54,7 +113,28 @@ def calculate_covariance(x, y, probs=None, axis=0):
     return m_xy - m_x * m_y
 
 
-def calculate_correlation(x, y, probs=None, axis=0):
+def calculate_correlation(x: np.ndarray, y: np.ndarray, probs: Union[np.ndarray, None] = None, axis=0):
+
+    """
+    Calculates correlation between two variables.
+
+    Parameters
+    ----------
+    x:
+        First variable.
+    y:
+        Second variable.
+    probs:
+        Probabilities.
+    axis:
+        Axis over which to calculate.
+
+    Returns
+    -------
+    Union[float, np.ndarray]
+        Correlation.
+
+    """
 
     c = calculate_covariance(x, y, probs, axis)
     std_x = calculate_std(x, probs, axis)
@@ -63,7 +143,27 @@ def calculate_correlation(x, y, probs=None, axis=0):
     return c / (std_x * std_y)
 
 
-def calculate_skewness(x: np.ndarray, probs=None, axis=0):
+def calculate_skewness(x: np.ndarray, probs: Union[np.ndarray, None] = None, axis=0):
+
+    """
+    Calculates skewness.
+
+    Parameters
+    ----------
+    x:
+        Data to calculate skewness for.
+    probs:
+        Probabilities.
+    axis:
+        Axis over which to calculate.
+
+    Returns
+    -------
+    Union[float, np.ndarray]
+        skewness.
+
+    """
+
     m_x = np.average(x, weights=probs, axis=axis)
     m_x_3 = np.average(x ** 3, weights=probs, axis=axis)
     std = calculate_std(x, probs=probs, axis=axis)
@@ -71,7 +171,29 @@ def calculate_skewness(x: np.ndarray, probs=None, axis=0):
     return (m_x_3 - 3 * m_x * std ** 2 - m_x ** 3) / (std ** 3)
 
 
-def calculate_kurtosis(x: np.ndarray, probs=None, excess=True, axis=0):
+def calculate_kurtosis(x: np.ndarray, probs: Union[np.ndarray, None] = None, excess: bool = True, axis=0):
+
+    """
+    Calculates kurtosis.
+
+    Parameters
+    ----------
+    x:
+        Data to calculate kurtosis for.
+    probs:
+        Probabilities.
+    excess:
+        Boolean indicating wether to calculate excess kurtosis. Default is True.
+    axis:
+        Axis over which to calculate.
+
+    Returns
+    -------
+    Union[float, np.ndarray]
+        Kurtosis.
+
+    """
+
     x_d = x - np.average(x, weights=probs, axis=axis)
     m_x_d_4 = np.average(x_d ** 4, weights=probs, axis=axis)
 
@@ -83,7 +205,7 @@ def calculate_kurtosis(x: np.ndarray, probs=None, excess=True, axis=0):
         return m_x_d_4 / (std ** 4)
 
 
-def weighted_percentile(x: np.ndarray, p: Union[float, np.ndarray], probs=None, axis=0):
+def weighted_percentile(x: np.ndarray, p: Union[float, np.ndarray], probs: Union[np.ndarray, None] = None, axis=0):
 
     """
     Function that calculates weighted percentiles
