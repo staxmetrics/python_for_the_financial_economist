@@ -1,5 +1,6 @@
 import numpy as np
 from scipy import stats
+from codelib.portfolio_optimization.mean_variance import portfolio_std, portfolio_mean
 
 
 def drawdown(index: np.ndarray):
@@ -108,6 +109,64 @@ def calculate_normal_cond_value_at_risk(mu: float, sigma: float, alpha: float = 
     cvar = mu - stats.norm.pdf(qnorm) / alpha * sigma
 
     return cvar
+
+
+def calculate_normal_port_value_at_risk(weights: np.ndarray, mu: np.ndarray, cov_mat: np.ndarray, alpha: float = 0.05) -> float:
+
+    """
+    Calculates Value at Risk for a portfolio of Gaussian random variables
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights.
+    mu:
+        Expected return / value.
+    cov_mat:
+        Covariance matrix.
+    alpha:
+        Confidence level. Default value is 5%.
+
+    Returns
+    -------
+    float
+        Value at Risk
+
+    """
+
+    mu = portfolio_mean(weights, mu)
+    std = portfolio_std(weights, cov_mat)
+
+    return calculate_normal_value_at_risk(mu, std, alpha)
+
+
+def calculate_normal_port_cond_value_at_risk(weights: np.ndarray, mu: np.ndarray, cov_mat: np.ndarray, alpha: float = 0.05) -> float:
+
+    """
+    Calculates Cond. Value at Risk for a portfolio of Gaussian random variables
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights.
+    mu:
+        Expected return / value.
+    cov_mat:
+        Covariance matrix.
+    alpha:
+        Confidence level. Default value is 5%.
+
+    Returns
+    -------
+    float
+        Value at Risk
+
+    """
+
+    mu = portfolio_mean(weights, mu)
+    std = portfolio_std(weights, cov_mat)
+
+    return calculate_normal_cond_value_at_risk(mu, std, alpha)
 
 
 if __name__ == '__main__':

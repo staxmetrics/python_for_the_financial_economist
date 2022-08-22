@@ -3,7 +3,7 @@ from scipy import stats
 from typing import Tuple
 
 
-def calculate_marginal_risks(weights: np.ndarray, cov_mat: np.ndarray) -> np.ndarray:
+def calculate_marginal_risks_std(weights: np.ndarray, cov_mat: np.ndarray) -> np.ndarray:
     """
     Function that calculates marginal risk using std. as portfolio risk measure
     Parameters
@@ -25,7 +25,7 @@ def calculate_marginal_risks(weights: np.ndarray, cov_mat: np.ndarray) -> np.nda
     return inner_derivative / total_risk
 
 
-def calculate_risk_contributions(weights: np.ndarray, cov_mat: np.ndarray) -> np.ndarray:
+def calculate_risk_contributions_std(weights: np.ndarray, cov_mat: np.ndarray) -> np.ndarray:
     """
     Function that calculates risk contributions using std. as portfolio risk measure
 
@@ -42,7 +42,7 @@ def calculate_risk_contributions(weights: np.ndarray, cov_mat: np.ndarray) -> np
         Marginal risks
     """
 
-    mr = calculate_marginal_risks(weights, cov_mat)
+    mr = calculate_marginal_risks_std(weights, cov_mat)
 
     return weights * mr
 
@@ -69,7 +69,7 @@ def calculate_marginal_sharpe(weights: np.ndarray, cov_mat: np.ndarray, mu: np.n
         Marginal risks
     """
 
-    mr = calculate_marginal_risks(weights, cov_mat)
+    mr = calculate_marginal_risks_std(weights, cov_mat)
     excess_mu = mu - rf
 
     return excess_mu / mr
@@ -111,7 +111,8 @@ Functions relevant for multivariate Gaussian distribution
 """
 
 
-def calculate_marginal_risk_normal_var(weights: np.ndarray, mu: np.ndarray, cov_mat: np.ndarray, alpha: float = 0.05) -> np.ndarray:
+def calculate_marginal_risks_normal_var(weights: np.ndarray, mu: np.ndarray, cov_mat: np.ndarray,
+                                        alpha: float = 0.05) -> np.ndarray:
     """
     Function that calculates marginal risk using Value-at-Risk as risk measure.
     It is assumed that returns follow a normal distribution.
@@ -133,7 +134,100 @@ def calculate_marginal_risk_normal_var(weights: np.ndarray, mu: np.ndarray, cov_
         Marginal risks
     """
 
-    ...
+    mr_std = calculate_marginal_risks_std(weights, cov_mat)
+
+    mr_var = -mu + stats.norm.ppf(1.0 - alpha) * mr_std
+
+    return mr_var
+
+
+def calculate_risk_contributions_normal_var(weights: np.ndarray, mu: np.ndarray, cov_mat: np.ndarray,
+                                            alpha: float = 0.05) -> np.ndarray:
+    """
+    Function that calculates marginal risk using Value-at-Risk as risk measure.
+    It is assumed that returns follow a normal distribution.
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights
+    mu:
+        Vector of expected returns
+    cov_mat:
+        Covariance matrix
+    alpha:
+        Confidence level
+
+    Returns
+    -------
+    np.ndarray
+        Marginal risks
+    """
+
+    mr = calculate_marginal_risks_normal_var(weights, mu, cov_mat, alpha=alpha)
+
+    return weights * mr
+
+
+def calculate_marginal_risks_normal_cvar(weights: np.ndarray, mu: np.ndarray, cov_mat: np.ndarray,
+                                         alpha: float = 0.05) -> np.ndarray:
+    """
+    Function that calculates marginal risk using Cond. Value-at-Risk as risk measure.
+    It is assumed that returns follow a normal distribution.
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights
+    mu:
+        Vector of expected returns
+    cov_mat:
+        Covariance matrix
+    alpha:
+        Confidence level
+
+    Returns
+    -------
+    np.ndarray
+        Marginal risks
+    """
+
+    mr_std = calculate_marginal_risks_std(weights, cov_mat)
+
+    qnorm = stats.norm.ppf(alpha)
+
+    mr_cvar = -mu + stats.norm.pdf(qnorm) / alpha * mr_std
+
+    return mr_cvar
+
+
+def calculate_risk_contributions_normal_cvar(weights: np.ndarray, mu: np.ndarray, cov_mat: np.ndarray,
+                                             alpha: float = 0.05) -> np.ndarray:
+    """
+    Function that calculates marginal risk using Cond. Value-at-Risk as risk measure.
+    It is assumed that returns follow a normal distribution.
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights
+    mu:
+        Vector of expected returns
+    cov_mat:
+        Covariance matrix
+    alpha:
+        Confidence level
+
+    Returns
+    -------
+    np.ndarray
+        Marginal risks
+    """
+
+    mr = calculate_marginal_risks_normal_cvar(weights, mu, cov_mat, alpha=alpha)
+
+    return weights * mr
+
 
 """
 Cornish Fisher Risk budgetting
