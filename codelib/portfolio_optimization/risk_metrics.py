@@ -1,7 +1,9 @@
 import numpy as np
 from scipy import stats
 from codelib.portfolio_optimization.mean_variance import portfolio_std, portfolio_mean
+from codelib.statistics.moments import weighted_percentile
 
+from typing import Union
 
 def drawdown(index: np.ndarray):
     """
@@ -47,6 +49,13 @@ def maxdrawdown(index: np.ndarray):
 """
 Scenarios
 """
+
+
+def calculate_value_at_risk(x: np.ndarray, alpha: float = 0.05, probs: Union[None, np.ndarray] = None):
+
+    var = weighted_percentile(x, p=alpha, probs=probs)
+
+    return var
 
 
 """
