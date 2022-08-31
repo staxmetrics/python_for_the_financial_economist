@@ -3,6 +3,27 @@ from typing import Union
 from scipy.interpolate import interp1d
 
 
+def equal_weights(x: np.ndarray, axis: int = 0) -> np.ndarray:
+
+    """
+    Calculates equal weights
+
+    Parameters
+    ----------
+    x:
+    axis:
+
+    Returns
+    -------
+    np.ndarray
+    """
+
+    n = x.shape[axis]
+
+    return np.repeat(1.0 / n, n)
+
+
+
 def calculate_time_crisp_probabilities(target_time_point: Union[int, float], time_points: np.ndarray,
                                        time_interval: Union[int, float]) -> np.ndarray:
 
