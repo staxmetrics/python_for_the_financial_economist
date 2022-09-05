@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Guide &#8212; python_for_the_financial_economist 13-05-2022 documentation</title>
+    <title>User Guide &#8212; python_for_the_financial_economist 05-09-2022 documentation</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -193,17 +193,16 @@
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">code</span><span class="se">\\</span><span class="s1">python_for_the_financial_economist</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>If we are using <em class="xref py py-obj">colab</em>, we can directly install relevant modules using the following</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import os
-
-user = &quot;staxmetrics&quot;
-repo = &quot;python_for_the_financial_economist&quot;
-
-url = f&quot;git+https://github.com/{user}/{repo}.git&quot;
-!pip install --upgrade {url}
+<p>Note that in <em class="xref py py-obj">colab</em>, we need to install Python 3.8</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!wget -O mini.sh https://repo.anaconda.com/miniconda/Miniconda3-py38_4.8.2-Linux-x86_64.sh
+!chmod +x mini.sh
+!bash ./mini.sh -b -f -p /usr/local
+!conda install -q -y jupyter
+!conda install -q -y google-colab -c conda-forge
+!python -m ipykernel install --name &quot;py38&quot; --user
 </pre></div>
 </div>
-<p>Alternatively, we can use</p>
+<p>If we are using <em class="xref py py-obj">colab</em>, we can get access to code using</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import os
 import sys
 
@@ -219,6 +218,19 @@ if os.path.isdir(repo):
 path = f&quot;{repo}&quot;
 if not path in sys.path:
     sys.path.insert(0, path)
+
+path = f&quot;{repo}\data&quot;
+if not path in sys.path:
+    sys.path.insert(0, path)
+</pre></div>
+</div>
+<p>It is possible to check which paths that are included using</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;&#39;&quot;</span> <span class="o">+</span> <span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">]))</span>
+</pre></div>
+</div>
+<p>If we want some data from the data folder, we can use</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/python_for_the_financial_economist/data/feds200533.csv&#39;</span><span class="p">,</span>
+        <span class="n">skiprows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

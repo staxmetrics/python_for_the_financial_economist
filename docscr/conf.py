@@ -25,7 +25,7 @@ copyright = '2022, Johan Stax Jakobsen'
 author = 'Johan Stax Jakobsen'
 
 # The full version, including alpha/beta/rc tags
-release = '13-05-2022'
+release = '05-09-2022'
 
 
 # -- General configuration ---------------------------------------------------
