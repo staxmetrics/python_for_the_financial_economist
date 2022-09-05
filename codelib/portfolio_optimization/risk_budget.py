@@ -241,6 +241,7 @@ Cornish Fisher Risk budgetting
 Functions relevant for scenario based estimation 
 """
 
+
 def calculate_marginal_risks_cvar(weights: np.ndarray, x: np.ndarray, p: float = 0.05,
                                   probs: Union[np.ndarray, None] = None) -> np.ndarray:
     """
