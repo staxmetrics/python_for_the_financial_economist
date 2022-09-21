@@ -8,7 +8,7 @@ Naive diversification measures
 """
 
 
-def calculate_enc(weights: np.ndarray, alpha: int = 1):
+def calculate_enc(weights: np.ndarray, alpha: int = 1, relative: bool = False):
 
     """
     Calculates the effective number of constituents in a long-only portfolio.
@@ -37,20 +37,29 @@ def calculate_enc(weights: np.ndarray, alpha: int = 1):
         Portfolio weights.
     alpha:
         Alpha parameter.
+    relative:
+        Calculate diversification relative to number of assets. Default is False.
 
     Returns
     -------
 
     """
 
+    num_constituents = len(weights)
+    enc = 0.0
+
     if alpha <= 0:
         raise ValueError("Alpha must be larger than zero.")
     elif alpha == 1:
-        return np.exp(entropy(weights))
+        enc = np.exp(entropy(weights))
     else:
-        norm = np.linalg.norm(weights)
-        return norm**(alpha / (1 - alpha))
+        norm = np.linalg.norm(weights, ord=alpha)
+        enc = norm**(alpha / (1 - alpha))
 
+    if relative:
+        return enc / num_constituents
+    else:
+        return enc
 
 """
 Scientific diversification measures
