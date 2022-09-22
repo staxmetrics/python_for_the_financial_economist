@@ -60,6 +60,9 @@ def tangency_portfolio(cov_mat: np.ndarray, mu: np.ndarray, rf: float) -> np.nda
 
     return w_max_sr
 
+"""
+Old functions - should be deleted
+"""
 
 def portfolio_variance(weights: np.ndarray, cov_mat: np.ndarray) -> float:
     """
