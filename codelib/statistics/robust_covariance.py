@@ -3,7 +3,7 @@ from scipy.linalg import block_diag
 from sklearn.neighbors import KernelDensity
 from typing import Tuple
 
-from codelib.statistics import corr_to_cov_matrix, cov_to_corr_matrix
+from codelib.statistics.moments import corr_to_cov_matrix, cov_to_corr_matrix
 
 
 """
