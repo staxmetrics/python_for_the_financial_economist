@@ -27,7 +27,7 @@ def calculate_marginal_risks_std(weights: np.ndarray, cov_mat: np.ndarray) -> np
     return inner_derivative / total_risk
 
 
-def calculate_risk_contributions_std(weights: np.ndarray, cov_mat: np.ndarray) -> np.ndarray:
+def calculate_risk_contributions_std(weights: np.ndarray, cov_mat: np.ndarray, scale: bool = False) -> np.ndarray:
     """
     Function that calculates risk contributions using std. as portfolio risk measure
 
@@ -37,6 +37,8 @@ def calculate_risk_contributions_std(weights: np.ndarray, cov_mat: np.ndarray) -
         Portfolio weights
     cov_mat:
         Covariance matrix
+    scale:
+        Scale risk contribution.
 
     Returns
     -------
@@ -45,8 +47,12 @@ def calculate_risk_contributions_std(weights: np.ndarray, cov_mat: np.ndarray) -
     """
 
     mr = calculate_marginal_risks_std(weights, cov_mat)
+    mrc = weights * mr
 
-    return weights * mr
+    if scale:
+        mrc /= np.sum(mrc)
+
+    return mrc
 
 
 def calculate_marginal_sharpe(weights: np.ndarray, cov_mat: np.ndarray, mu: np.ndarray, rf: float):

@@ -1,14 +1,14 @@
 import numpy as np
 from scipy.stats import entropy
 from codelib.portfolio_optimization.risk_metrics import calculate_portfolio_variance
-
+from typing import Union
 
 """
 Naive diversification measures
 """
 
 
-def calculate_enc(weights: np.ndarray, alpha: int = 1, relative: bool = False):
+def calculate_enc(weights: np.ndarray, alpha: int = 1, relative: bool = False) -> float:
 
     """
     Calculates the effective number of constituents in a long-only portfolio.
@@ -99,15 +99,75 @@ def calculate_glr_ratio(weights: np.ndarray, cov_mat: np.ndarray):
     return port_var / avg_var
 
 
-def calculate_enb(weights: np.ndarray, transition_matrix: np.ndarray, factor_variances: np.ndarray, alpha: int = 1):
+def calculate_enb(weights: np.ndarray, transition_matrix: np.ndarray, factor_variances: np.ndarray, alpha: int = 1) -> Union[float, np.ndarray]:
+    """
+    Calculates the effective number of uncorrelated bets of Meucci (2009) - "Managining diversification".
 
+    Notes
+    -----
+    The method relies on the choice of :math:`N` uncorrelated factors whose returns can be expressed as
+
+    .. math::
+
+        \\begin{equation}
+            \\mathbf{r}_F = \\mathbf{A}^\\top \\mathbf{r}
+        \\end{equation}
+
+    where :math:`r` is the vector of constituents returns and :math:`\\mathbf{A}` is the "transition matrix" that maps
+    from the constituents returns to factor returns (square matrix of size :math:`N`). :math:`\\mathbf{A}` is assumed
+    invertible. Given the assumption of uncorrelated factors and invertible matrix, we can write the portfolio variance
+    as
+
+    .. math::
+
+        \\begin{align}
+            \\mathbf{w}^\\top \\boldsymbol{\\Sigma} \\mathbf{w} &= \\mathbf{w}^\\top (\\mathbf{A}^\\top)^{-1}
+            \\boldsymbol{\\Sigma}_F (\\mathbf{A})^{-1} \\mathbf{w} \\
+            &= \\mathbf{w}^\\top_F \\boldsymbol{\\Sigma} \\mathbf{w}_F \\
+            &= \\sum_{i=1}^N (\\sigma_{F_i} w_{F_i})^2
+        \\end{align}
+
+    We can then define the i'th factors contribution to portfolio variance
+
+    .. math::
+
+        \\begin{equation}
+            p_i =\\frac{(\\sigma_{F_i} w_{F_i})^2}{\\mathbf{w}^\\top \\boldsymbol{\\Sigma} \\mathbf{w}}
+        \\end{equation}
+
+    which is positive and sum to one. The idea is then to calculate the effective number of uncorrelated bets using the
+    norm of the factor constributions to the total variance (basically calculating Effective Number of Constituents
+    using :math:`p_i, i=1, ..., N`).
+
+    For further details see Meucci (2009) - "Managing diversification".
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights.
+    transition_matrix:
+        Transtion matrix that transforms returns to factor returns.
+    factor_variances
+    alpha
+
+    Returns
+    -------
+
+    """
+
+    # inverse transition matrix
     inv_transition_matrix = np.linalg.inv(transition_matrix)
 
+    # factor covariance and weights
     factor_cov_mat = np.diag(factor_variances)
     factor_weights = inv_transition_matrix @ weights
 
+    # port. variance
     port_var = calculate_portfolio_variance(weights=factor_weights, cov_mat=factor_cov_mat)
 
+    # factor contribution to variance
     var_contrib = (factor_variances * np.square(factor_weights)) / port_var
 
-    return calculate_enc(weights=var_contrib, alpha=alpha)
+    # return effective number of constituents calculated using variance contribution
+    return calculate_enc(weights=var_contrib, alpha=alpha), var_contrib
+
