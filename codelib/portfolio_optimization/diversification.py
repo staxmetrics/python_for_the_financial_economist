@@ -147,8 +147,8 @@ def calculate_enb(weights: np.ndarray, transition_matrix: np.ndarray, factor_var
         Portfolio weights.
     transition_matrix:
         Transtion matrix that transforms returns to factor returns.
-    factor_variances
-    alpha
+    factor_variances:
+    alpha:
 
     Returns
     -------
