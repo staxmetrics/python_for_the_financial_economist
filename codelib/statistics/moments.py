@@ -374,3 +374,52 @@ def corr_to_cov_matrix(corr_mat: np.ndarray, vols: np.ndarray) -> np.ndarray:
     cov_mat = corr_mat * np.outer(vols, vols)
 
     return cov_mat
+
+
+"""
+Multivariate log-normal, mean and covariance
+"""
+
+
+def calculate_log_norm_mean(mu: np.ndarray, covariance: np.ndarray) -> np.ndarray:
+    """
+    Function that calculates the expected value of X,
+    when :math:`\\log(X)` is multivariate normal
+
+    Parameters
+    ----------
+    mu:
+        Vector of expected values of log X
+    covariance:
+        Covariance matrix of log X
+
+    Returns
+    -------
+    float
+        Expected value of X
+    """
+
+    return np.exp(mu + 0.5 * np.diag(covariance))
+
+
+def calculate_log_norm_cov_mat(mu: np.ndarray, covariance: np.ndarray) -> np.ndarray:
+    """
+    Function that calculates the covariance matrix of X,
+    when :math:`\\log(X)` is multivariate normal
+
+    Parameters
+    ----------
+    mu:
+        Vector of expected values of log X
+    covariance:
+        Covariance matrix of log X
+
+    Returns
+    -------
+    float
+        Covariance matrix of X
+    """
+
+    mu_l = calculate_log_norm_mean(mu, covariance)
+
+    return np.outer(mu_l, mu_l) * (np.exp(covariance) - 1)
