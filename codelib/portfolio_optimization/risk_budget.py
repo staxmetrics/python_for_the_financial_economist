@@ -339,7 +339,7 @@ def calculate_risk_contributions_cvar(weights: np.ndarray, x: np.ndarray, p: flo
     we can decompose the Cond. Value at Risk of a portfolio :math:`\\boldsymbol{w}^\\top \\boldsymbol{X}` as
 
     .. math::
-            \\text{VaR}_{\\boldsymbol{X}} = \\sum_{i=1}^K \\frac{\\partial \\text{VaR}_{\\boldsymbol{X}}}{\\partial w_i} w_i
+            \\text{CVaR}_{\\boldsymbol{X}} = \\sum_{i=1}^K \\frac{\\partial \\text{VaR}_{\\boldsymbol{X}}}{\\partial w_i} w_i
                                           = \\sum_{i=1}^K \\text{E}[X_i \\vert X \\leq \\text{VaR}_{\\boldsymbol{X}}] w_i
 
     where :math:`K` is the number of assets in the portfolio.
