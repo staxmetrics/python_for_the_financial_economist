@@ -315,7 +315,6 @@ class BlackLitterman:
 
         return part1 * part2
 
-
     @staticmethod
     def calculate_posterior_mean(pi: float, cov_mat: np.ndarray, view_mat: np.ndarray, view_vec: np.ndarray,
                                  view_cov_mat: np.ndarray = None, confidence: float = 1.0) -> np.ndarray:
