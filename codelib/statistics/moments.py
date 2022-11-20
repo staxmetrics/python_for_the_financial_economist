@@ -391,7 +391,7 @@ def calculate_log_norm_mean(mu: np.ndarray, covariance: np.ndarray) -> np.ndarra
     mu:
         Vector of expected values of log X
     covariance:
-        Covariance matrix of log X
+        Covariance matrix of log X+
 
     Returns
     -------
