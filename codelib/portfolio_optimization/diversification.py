@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.stats import entropy
-from codelib.portfolio_optimization.risk_metrics import calculate_portfolio_variance
+from codelib.portfolio_optimization.risk_metrics import calculate_portfolio_variance, calculate_portfolio_std
 from typing import Union
 
 """
@@ -97,6 +97,37 @@ def calculate_glr_ratio(weights: np.ndarray, cov_mat: np.ndarray):
     avg_var = np.inner(weights, var_vec)
 
     return port_var / avg_var
+
+
+def calculate_cc_ratio(weights: np.ndarray, cov_mat: np.ndarray):
+
+    """
+    Calculates the diversification ratio of Chouefaty and Coignard (2008)
+
+    .. math::
+
+        \\begin{equation}
+            \\text{GLR}(w, \\Sigma) = \\frac{\\sum_{i=1}^N w_i \\sigma_i}{\\sqrt{w^{\\top} \\Sigma w}}
+        \\end{equation}
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights.
+    cov_mat:
+        Covariance matrix.
+    Returns
+    -------
+    float
+        Diversification ratio.
+    """
+
+    port_std = calculate_portfolio_std(weights=weights, cov_mat=cov_mat)
+
+    vol_vec = np.sqrt(np.diag(cov_mat))
+    avg_std = np.inner(weights, vol_vec)
+
+    return avg_std / port_std
 
 
 def calculate_enb(weights: np.ndarray, transition_matrix: np.ndarray, factor_variances: np.ndarray, alpha: int = 1) -> Union[float, np.ndarray]:

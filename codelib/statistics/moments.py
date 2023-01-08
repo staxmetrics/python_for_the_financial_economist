@@ -218,7 +218,7 @@ def weighted_percentile(x: np.ndarray, p: Union[float, np.ndarray], probs: Union
         Percentile(s) to calculate.
     probs:
         Probabilities / weights
-    axis
+    axis:
         Axis over which to calculate.
 
     Returns
