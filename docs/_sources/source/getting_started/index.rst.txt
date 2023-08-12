@@ -16,12 +16,6 @@ After the installation, you will have access to the `Anaconda Navigator` and `An
 `jupyter notebooks` or `jupyter lab` which will use predominately in the course.
 
 
-Google's colab
---------------
-
-If you want to work directly in your browser without installing anything, then you can use `colab <https://colab.research.google.com/>`_.
-
-
 Development environment
 -----------------------
 
