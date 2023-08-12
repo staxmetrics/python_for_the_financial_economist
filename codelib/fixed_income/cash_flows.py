@@ -231,7 +231,9 @@ class CashFlow:
                 disc_time += t * self.flows[i] * disc
                 present_value += self.flows[i] * disc
 
-        duration = disc_time / present_value
+        duration = 0.0
+        if present_value > 0:
+            duration = disc_time / present_value
 
         return duration
 
@@ -308,7 +310,9 @@ class CashFlow:
                 disc_time += t**2 * self.flows[i] * disc
                 present_value += self.flows[i] * disc
 
-        convexity = disc_time / present_value
+        convexity = 0.0
+        if present_value > 0.0:
+            convexity = disc_time / present_value
 
         return convexity
 

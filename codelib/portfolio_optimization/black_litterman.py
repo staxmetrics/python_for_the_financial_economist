@@ -1,5 +1,5 @@
 import numpy as np
-
+from scipy.stats import chi2
 from typing import Union, NoReturn
 
 
@@ -114,7 +114,10 @@ Class that implements Black-Litterman a la Meucci (2008)
 class BlackLitterman:
 
     """
-    Class the implements an alternative version of Black-Litterman
+    Class the implements an alternative version of Black-Litterman, see
+
+        Meucci (2008) - The Black-Litterman Approach: Original Model and Extensions
+
     """
 
     def __init__(self, cov_mat, pi=None, market_weights=None, lam=2.4, view_mat=None, view_vec=None):
@@ -129,10 +132,10 @@ class BlackLitterman:
         pi:
             Expected return vector of reference model.
         market_weights:
-            Market weigths of the market portfolio. This will be used to calculate pi if it is not provided.
+            Market weights of the market portfolio. This will be used to calculate pi if it is not provided.
             Either pi or market_weights must be provided.
         lam:
-            Lambda paramter.
+            Lambda parameter.
         view_mat:
             View or pick matrix.
         view_vec
@@ -276,6 +279,42 @@ class BlackLitterman:
 
         self.add_view(view, target)
 
+    def calculate_consistency_index(self) -> float:
+
+        """
+        Calculates a consistency index of the views using the reference model as null hypothesis.
+
+        Returns
+        -------
+        float
+            Consistency index.
+        """
+
+        distance = BlackLitterman.calculate_view_distance(self.pi, self.mean_posterior, self.cov_mat)
+
+        return 1 - chi2.cdf(distance, self.num_assets)
+
+    def calculate_sensitivity_index(self) -> np.ndarray:
+
+        """
+        Calculates a sensitivity of the views using the reference model as null hypothesis.
+
+        Returns
+        -------
+        np.ndarray
+            Consistency index.
+        """
+
+        p_mat = self.view_mat
+        q_mat = self.view_cov_mat
+
+        distance = BlackLitterman.calculate_view_distance(self.pi, self.mean_posterior, self.cov_mat)
+
+        part1 = -2 * chi2.pdf(distance, self.num_assets)
+        part2 = np.linalg.inv(p_mat @ self.cov_mat @ p_mat.T + q_mat) @ p_mat @ (self.mean_posterior - self.pi)
+
+        return part1 * part2
+
     @staticmethod
     def calculate_posterior_mean(pi: float, cov_mat: np.ndarray, view_mat: np.ndarray, view_vec: np.ndarray,
                                  view_cov_mat: np.ndarray = None, confidence: float = 1.0) -> np.ndarray:
@@ -377,3 +416,8 @@ class BlackLitterman:
             raise ValueError("Market weights cannot be None")
 
         return lam * cov_mat @ market_weights
+
+    @staticmethod
+    def calculate_view_distance(pi: np.ndarray, mu_view: np.ndarray, cov_mat: np.ndarray) -> float:
+
+        return (mu_view - pi) @ np.linalg.inv(cov_mat) @ (mu_view - pi)

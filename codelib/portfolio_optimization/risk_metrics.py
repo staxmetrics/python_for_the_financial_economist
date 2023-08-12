@@ -1,6 +1,5 @@
 import numpy as np
 from scipy import stats
-from codelib.portfolio_optimization.mean_variance import portfolio_std, portfolio_mean
 from codelib.statistics.moments import weighted_percentile
 from codelib.statistics.historical_probabilities import equal_weights
 
@@ -46,6 +45,66 @@ def maxdrawdown(index: np.ndarray):
     """
 
     return drawdown(index)[0].min()
+
+
+def calculate_portfolio_variance(weights: np.ndarray, cov_mat: np.ndarray) -> float:
+    """
+    Function that returns the variance of the portfolio
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights
+    cov_mat:
+        Covariance matrix
+
+    Returns
+    -------
+    float
+        Variance of portfolio
+    """
+
+    return weights @ cov_mat @ weights
+
+
+def calculate_portfolio_mean(weights: np.ndarray, mu: np.ndarray) -> float:
+    """
+    Function that returns the standard deviation of the portfolio
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights
+    mu:
+        Expected return vector.
+
+    Returns
+    -------
+    float
+        Expected return of portfolio
+    """
+
+    return weights @ mu
+
+
+def calculate_portfolio_std(weights: np.ndarray, cov_mat: np.ndarray) -> float:
+    """
+    Function that returns the standard deviation of the portfolio
+
+    Parameters
+    ----------
+    weights:
+        Portfolio weights
+    cov_mat:
+        Covariance matrix
+
+    Returns
+    -------
+    float
+        Standard deviation of portfolio
+    """
+
+    return np.sqrt(calculate_portfolio_variance(weights, cov_mat))
 
 
 """
@@ -224,8 +283,8 @@ def calculate_normal_port_value_at_risk(weights: np.ndarray, mu: np.ndarray, cov
 
     """
 
-    mu = portfolio_mean(weights, mu)
-    std = portfolio_std(weights, cov_mat)
+    mu = calculate_portfolio_mean(weights, mu)
+    std = calculate_portfolio_std(weights, cov_mat)
 
     return calculate_normal_value_at_risk(mu, std, alpha)
 
@@ -253,8 +312,8 @@ def calculate_normal_port_cond_value_at_risk(weights: np.ndarray, mu: np.ndarray
 
     """
 
-    mu = portfolio_mean(weights, mu)
-    std = portfolio_std(weights, cov_mat)
+    mu = calculate_portfolio_mean(weights, mu)
+    std = calculate_portfolio_std(weights, cov_mat)
 
     return calculate_normal_cond_value_at_risk(mu, std, alpha)
 
