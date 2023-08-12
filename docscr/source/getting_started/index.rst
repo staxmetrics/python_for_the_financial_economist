@@ -16,12 +16,6 @@ After the installation, you will have access to the `Anaconda Navigator` and `An
 `jupyter notebooks` or `jupyter lab` which will use predominately in the course.
 
 
-Google's colab
---------------
-
-If you want to work directly in your browser without installing anything, then you can use `colab <https://colab.research.google.com/>`_.
-
-
 Development environment
 -----------------------
 
@@ -31,7 +25,7 @@ will be suitable when developing own code libraries.
 Python
 ^^^^^^
 
-Navigate to `python download <https://www.python.org/downloads/>`_ and download and install relevant Python release. I have installed `Python 3.8`.
+Navigate to `python download <https://www.python.org/downloads/>`_ and download and install relevant Python release. I have installed `Python 3.11.4`.
 
 PyCharm
 ^^^^^^^
