@@ -5,38 +5,123 @@ This note describes to get started with the course *Python for the Financial Eco
 
 Most of the relevant course material can be found in the `github repository <https://github.com/staxmetrics/python_for_the_financial_economist>`_.
 
-There are several ways of starting working with the course material and coding in Python. Below, three different ways described.
+There are several ways of starting working with the course material and coding in Python. I will use the `Anaconda distribution`, but feel free to do something else if you
+are used to something else.
 
 Anaconda installation
 ---------------------
 
 A simple way of getting started is to install `Anaconda <https://www.anaconda.com/>`_.
 
+An installation guide can be found `here <https://docs.anaconda.com/free/anaconda/install/index.html>`_.
+
 After the installation, you will have access to the `Anaconda Navigator` and `Anaconda Prompt` from which you have access to
 `jupyter notebooks` or `jupyter lab` which will use predominately in the course.
 
 
-Development environment
------------------------
+Anaconda environment
+--------------------
+The Anaconda distribution comes with a `base` environment which comes with over 250 packages automatically installed and
+a large number of additional packages that can be individually installed (see `here <https://docs.anaconda.com/free/anaconda/packages/install-packages/>`_ for more information).
 
-The most advanced setup is to download `PyCharm` and interact directly with the course materiale using `git`. This approach
-will be suitable when developing own code libraries.
+In many cases, we would be able to work directly with the `base` environment, but this may lead to issues with different versions of Python packages, e.g. we
+need two different versions of a Python package for two different projects. The recommended approach is to create a new `conda` environment for each project (the course in this case).
 
-Python
-^^^^^^
+We will create a new `conda` environment that contains the python packages used in the course. A guide can be found
+`here <https://docs.anaconda.com/free/navigator/tutorials/manage-environments/>`_.
 
-Navigate to `python download <https://www.python.org/downloads/>`_ and download and install relevant Python release. I have installed `Python 3.8`.
+YML file with environment specification
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The root of the `github repository <https://github.com/staxmetrics/python_for_the_financial_economist>`_ contains the yml file
+`environment.yml` which can be imported directly into `Anaconda Navigator` to create a new environment.
+
+
+Jupyter notebooks
+-----------------
+
+`Jupyter <https://jupyter.org/>`_ is a browser-based way of interacting with Python and is especially useful when working
+and interacting with data and want to visualize and do calculations on the fly. It is generally not suited for developing
+bigger applications.
+
+We will be using Jupyter notebooks extensively during the course. All course material is presented in the form of notebooks.
+
+Will will be able to launch `Jupyter` directly from the `Anaconda Navigator` by pushing the launch button at the Jupyter notebook icon
+(remember to select the correct environment).
+
+Another method to open a Jupyter notebook is to use the `Anaconda Prompt`. It should looks something like this:
+
+.. image:: anaconda_prompt.jpg
+    :scale: 70 %
+    :align: center
+
+`(base)` indicates that the base environment is activated. We can activate the relevant environment with
+
+.. code-block:: console
+
+    conda activate fin_econ_2023
+
+After we have navigated to the desired folder, e.g.
+
+.. code-block:: console
+
+    cd C:\code\python_for_the_financial_economist
+
+We can launch Jupyter with
+
+.. code-block:: console
+
+    jupyter notebook
+
+If you run the command from the root of `python_for_the_financial_economist`, you should see something like
+
+.. image:: jupyter_1.jpg
+    :scale: 70 %
+    :align: center
+
+Using IDEs
+----------
+We will primarily use `jupyter notebooks` for coding and analysis (one should be able to complete the course using only notebooks),
+but sometimes we need to utilize an IDE (integrated development environment) to write code.This will increase the productivity
+when writing e.g. code libraries. Some of the most used IDEs integrate easily with Anaconda
+(see `here <https://docs.anaconda.com/free/anaconda/ide-tutorials/>`_).
+
 
 PyCharm
 ^^^^^^^
 
-We will use the `PyCharm` IDE in this course that can de downloaded `here <https://www.jetbrains.com/pycharm/download/#section=windows>`_. Select the `professional` version.
+I will use the `PyCharm` IDE in this course that can de downloaded `here <https://www.jetbrains.com/pycharm/download/#section=windows>`_. Select the `professional` version.
 
 A free student license can be obtained `here <https://www.jetbrains.com/community/education/#students>`_.
 
 The license can be registered by selecting `Help > Register` in the toolbar when opening `PyCharm`
 (see `here <https://www.jetbrains.com/help/pycharm/register.html>`_).
 
+Feel free to use alternatives such as `Spyder` or `VS code`, but this will not be supported.
+
+Configuration of environment
+""""""""""""""""""""""""""""
+
+After you have opened the project, then we need to configure the virtual environment. Go to `File > Settings > Project: Python for ...` and
+select `Python interpreter`. Press the symbol in the red circle (see below) and select `Add`
+
+.. image:: virt_env_1.jpg
+    :scale: 70 %
+    :align: center
+
+
+Select the already created conda environment. Press `OK`.
+
+.. image:: virt_env_2.jpg
+    :scale: 60 %
+    :align: center
+
+
+When selecting the terminal you should be able to see that you are working with the conda environment, e.g.
+
+.. image:: virt_env_3.jpg
+    :scale: 50 %
+    :align: center
 
 Change some settings
 """"""""""""""""""""
@@ -47,10 +132,25 @@ I will be using the `numpy` docstring format. Change it in `File > Settings > To
     :scale: 70 %
     :align: center
 
-Git and git bash
-^^^^^^^^^^^^^^^^
 
-Navigate to `git download <https://git-scm.com/downloads>`_ and download and install the newest release.
+
+Getting access to the course material
+-------------------------------------
+
+The easiest way to obtain the course material is simply to download a zip folder from `github repository <https://github.com/staxmetrics/python_for_the_financial_economist>`_.
+
+.. image:: download_zip.jpg
+    :scale: 70 %
+    :align: center
+
+The problem with this approach is that you need to download the course material every time the course material is updated.
+
+
+Using git to interact with Github
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Git enables us to interact directly with Github. Navigate to `git download <https://git-scm.com/downloads>`_ and download and install the newest release.
+
 
 Github repository
 -----------------
@@ -75,45 +175,40 @@ Now you will have a local version of the github repository on your computer!
 After you have cloned the github repository, you can `right click` on the folder and choose `Open Folder As PyCharm Project`.
 If this not work, then you can open a specific project from PyCharm.
 
-Configuration of virtual environment (optional)
------------------------------------------------
+Git and git bash
+^^^^^^^^^^^^^^^^
 
-It is possible to use the Python system interpreter.
+Navigate to `git download <https://git-scm.com/downloads>`_ and download and install the newest release.
 
-However, it is recommended to be working with different `virtual environments <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment>`_
-for different projects. This allows us to have control over which specific packages and versions of these packages that we are using.
+Cloning the github repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-After you have opened the project, then we need to configure the virtual environment. Go to `File > Settings > Project: Python for ...` and
-select `Python interpreter`. Press the symbol in the red circle (see below) and select `Add`
+As mentioned, most of the relevant course material can be found in the `github repository <https://github.com/staxmetrics/python_for_the_financial_economist>`_.
 
-.. image:: virt_env_1.jpg
-    :scale: 70 %
-    :align: center
+To clone the github repository (the master branch), open Git Bash and navigate to the folder where you want the local branch.
+I use the folder `C:\\code` for repositories.
 
+Open Git Bash and type
 
-Select the folder where you want the virtual environment and the name you want to use. I have the folder `C:\\environments` for virtual environments.
-You also need to select the location of python installation. Press `OK`.
+.. code-block::
 
-.. image:: virt_env_2.jpg
-    :scale: 60 %
-    :align: center
+    cd c:\code
+    git clone https://github.com/staxmetrics/python_for_the_financial_economist.git
 
 
-When selecting the terminal you should be able to see that you are working with your particular virtual environment, e.g.
+Alternatively, it will also be possible directly in PyCharm. Navigate to VCS->Git->Clone.
 
-.. image:: virt_env_3.jpg
-    :scale: 50 %
-    :align: center
+Now you will have a local version of the github repository on your computer!
 
-Install relevant packages
-^^^^^^^^^^^^^^^^^^^^^^^^^
+After you have cloned the github repository, you can `right click` on the folder and choose `Open Folder As PyCharm Project`.
+If this not work, then you can open a specific project from PyCharm.
 
-The `requirements.txt` file contains the majority of the python packages needed during the course. You can install all of them using (in the terminal)
+Pulling newest update to local repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: console
+I will continuously add new material to the github repository. To pull the newest version, you need to download it to your computer.
 
-    pip install -r requirements.txt
-
+This can be done directly from PyCharm by navigating to VCS->Git->Pull (on a Windows machine). Alternatively, one could do it using git bash.
 
 Folder structure
 ----------------
@@ -135,28 +230,6 @@ The folder structure is presented below.
     └── requirements.txt
 
 
-Jupyter Notebooks
------------------
-
-`Jupyter <https://jupyter.org/>`_ is a browser-based way of interacting with Python and is especially useful when working
-and interacting with data and want to visualize and do calculations on the fly. It is generally not suited for developing
-bigger applications.
-
-We will be using Jupyter notebooks extensively during the course.
-
-We can open Jupyter notebooks using the `cmd prompt` or the terminal in PyCharm by navigating to the relevant folder and
-applying the command
-
-.. code-block:: console
-
-    jupyter notebook
-
-If you run the command from the root of `python_for_the_financial_economist`, you should see something like
-
-.. image:: jupyter_1.jpg
-    :scale: 70 %
-    :align: center
-
 Access virtual environment in Jupyter notebook
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -169,19 +242,16 @@ To be able to access the virtual environment from a Jupyter notebook, we need ru
 See e.g. `this blog <https://janakiev.com/blog/jupyter-virtual-envs/>`_ for further details.
 
 
-Pulling newest update to local repository
------------------------------------------
-
-I will continuously add new material to the github repository. To pull the newest version, you need to download it to your computer.
-This can be done directly from PyCharm by navigating to VCS->Git->Pull (on a Windows machine).
 
 Working with your own code and notebooks
 ----------------------------------------
 
-It should be noted that if you just start working on the master branch in the repository, then you will likely get `merge conflicts`
-when trying to pull changes from the github (remote) repository.
-
 There are several possibilities to work with your own code including
+
+A folder with code and notebooks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The simplest approach will be to simple have a folder somewhere on your computer with notebooks and scripts.
 
 New branch in the repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -193,8 +263,3 @@ New repository
 ^^^^^^^^^^^^^^
 
 You can create your own repository.
-
-A folder with code and notebooks
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The simplest approach will be to simple have a folder somewhere on your computer with notebooks and scripts.
