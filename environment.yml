@@ -1,0 +1,20 @@
+name: fin_econ_2023
+
+dependencies:
+  - notebook=6.5.4
+  - jupyterlab=3.6.3
+  - ipykernel=6.25.0
+  - numpy=1.24.3
+  - pandas=1.5.3
+  - numba=0.57.0
+  - pandas-datareader=0.10.0
+  - scipy=1.11.1
+  - statsmodels=0.14.0
+  - seaborn=0.12.2
+  - quandl=3.6.1
+  - pip=23.1.2
+  - pip:
+      - cvxpy
+      - yfinance
+      - wrds
+      - matplotlib
