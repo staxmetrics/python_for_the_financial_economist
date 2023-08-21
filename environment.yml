@@ -18,3 +18,4 @@ dependencies:
       - yfinance
       - wrds
       - matplotlib
+      - sympy
