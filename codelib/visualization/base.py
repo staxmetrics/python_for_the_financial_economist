@@ -540,7 +540,7 @@ def correlation_plot(correlation_matrix: np.ndarray, names: Union[List[str], Non
         k = 0
         if include_diagonal:
             k = 1
-        mask = np.triu(np.ones_like(df_correlation, dtype=np.bool), k=k)
+        mask = np.triu(np.ones_like(df_correlation, dtype=bool), k=k)
 
 #    fig, ax = plt.subplots()
 
