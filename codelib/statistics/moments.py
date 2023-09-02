@@ -297,6 +297,46 @@ def calculate_cov_mat(x: np.ndarray, probs: np.ndarray, axis: int = 0) -> np.nda
     return cov_mat
 
 
+def estimate_cov_mat_factor(x: np.ndarray, z: np.ndarray, probs: Union[np.ndarray, None] = None,
+                            axis: int = 0) -> np.ndarray:
+
+    """
+    Estimates a covariance matrix between a number of random variables and a set of factors based on a historical
+    dataset and a set of probabilities.
+
+    Parameters
+    ----------
+    x:
+        The dataset to estimate covariance for.
+    z:
+        The dataset that acts as factors
+    probs:
+        The probabilities to weight the observations of the dataset by.
+    axis:
+        The axis to estimate over.
+
+    Returns
+    -------
+    np.ndarray
+        The estimated correlation matrix.
+
+    """
+
+    x = x.T if axis == 1 else x
+    z = z.T if axis == 1 else z
+
+    if probs is None:
+        probs = np.repeat(1.0 / len(x), len(x))
+
+    expected_x_squared = np.sum(probs[:, None, None] * np.einsum('ji, jk -> jik', x, z), axis=0)
+    mu_x = probs @ x
+    mu_z = probs @ z
+    mu_squared = np.einsum('j, i -> ji', mu_x, mu_z)
+    cov_mat = expected_x_squared - mu_squared
+
+    return cov_mat
+
+
 def calculate_corr_mat(x: np.ndarray, probs: np.ndarray, axis: int = 0) -> np.ndarray:
     """
     Estimates a correlation matrix based on a historical dataset and a set of probabilities.
