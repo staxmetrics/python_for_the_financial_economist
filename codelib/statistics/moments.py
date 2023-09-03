@@ -266,7 +266,7 @@ def weighted_percentile(x: np.ndarray, p: Union[float, np.ndarray], probs: Union
         return np.apply_along_axis(weighted_percentile, axis, x, p, probs)
 
 
-def calculate_cov_mat(x: np.ndarray, probs: np.ndarray, axis: int = 0) -> np.ndarray:
+def calculate_cov_mat(x: np.ndarray, probs: Union[np.ndarray, None] = None, axis: int = 0) -> np.ndarray:
 
     """
     Estimates a covariance matrix based on a historical dataset and a set of probabilities.
@@ -289,6 +289,9 @@ def calculate_cov_mat(x: np.ndarray, probs: np.ndarray, axis: int = 0) -> np.nda
 
     x = x.T if axis == 1 else x
 
+    if probs is None:
+        probs = np.repeat(1.0 / len(x), len(x))
+
     expected_x_squared = np.sum(probs[:, None, None] * np.einsum('ji, jk -> jik', x, x), axis=0)
     mu = probs @ x
     mu_squared = np.einsum('j, i -> ji', mu, mu)
@@ -297,7 +300,7 @@ def calculate_cov_mat(x: np.ndarray, probs: np.ndarray, axis: int = 0) -> np.nda
     return cov_mat
 
 
-def estimate_cov_mat_factor(x: np.ndarray, z: np.ndarray, probs: Union[np.ndarray, None] = None,
+def calculate_cov_mat_factor(x: np.ndarray, z: np.ndarray, probs: Union[np.ndarray, None] = None,
                             axis: int = 0) -> np.ndarray:
 
     """
@@ -318,7 +321,7 @@ def estimate_cov_mat_factor(x: np.ndarray, z: np.ndarray, probs: Union[np.ndarra
     Returns
     -------
     np.ndarray
-        The estimated correlation matrix.
+        The estimated covariance matrix.
 
     """
 
@@ -335,6 +338,47 @@ def estimate_cov_mat_factor(x: np.ndarray, z: np.ndarray, probs: Union[np.ndarra
     cov_mat = expected_x_squared - mu_squared
 
     return cov_mat
+
+
+def calculate_outer_product(x: np.ndarray, z: np.ndarray, probs: Union[np.ndarray, None] = None,
+                            axis: int = 0) -> np.ndarray:
+
+    """
+    Estimates the outer product for a pair of random vectors based on a historical
+    dataset and a set of probabilities.
+
+    Parameters
+    ----------
+    x:
+        The dataset of the first random vector.
+    z:
+        The dataset of the second random vector.
+    probs:
+        The probabilities to weight the observations of the dataset by.
+    axis:
+        The axis to estimate over.
+
+    Returns
+    -------
+    np.ndarray
+        The estimated outer product.
+
+    """
+
+    if x.ndim == 1:
+        x = (np.atleast_2d(x) if axis == 1 else np.atleast_2d(x).T)
+    if z.ndim == 1:
+        z = (np.atleast_2d(z) if axis == 1 else np.atleast_2d(z).T)
+
+    x = x.T if axis == 1 else x
+    z = z.T if axis == 1 else z
+
+    if probs is None:
+        probs = np.repeat(1.0 / len(x), len(x))
+
+    expected_xz = np.sum(probs[:, None, None] * np.einsum('ji, jk -> jik', x, z), axis=0)
+
+    return expected_xz
 
 
 def calculate_corr_mat(x: np.ndarray, probs: np.ndarray, axis: int = 0) -> np.ndarray:
