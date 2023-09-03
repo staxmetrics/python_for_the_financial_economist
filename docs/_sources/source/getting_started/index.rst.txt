@@ -152,34 +152,6 @@ Using git to interact with Github
 Git enables us to interact directly with Github. Navigate to `git download <https://git-scm.com/downloads>`_ and download and install the newest release.
 
 
-Github repository
------------------
-
-Most of the relevant course material can be found in the `github repository <https://github.com/staxmetrics/python_for_the_financial_economist>`_.
-
-To clone the github repository (the master branch), open Git Bash and navigate to the folder where you want the local branch.
-I use the folder `C:\\code` for repositories.
-
-In Git Bash type
-
-.. code-block::
-
-    cd c:\code
-    git clone https://github.com/staxmetrics/python_for_the_financial_economist.git
-
-
-Alternatively, it will also be possible directly in PyCharm. Navigate to VCS->Git->Clone.
-
-Now you will have a local version of the github repository on your computer!
-
-After you have cloned the github repository, you can `right click` on the folder and choose `Open Folder As PyCharm Project`.
-If this not work, then you can open a specific project from PyCharm.
-
-Git and git bash
-^^^^^^^^^^^^^^^^
-
-Navigate to `git download <https://git-scm.com/downloads>`_ and download and install the newest release.
-
 Cloning the github repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

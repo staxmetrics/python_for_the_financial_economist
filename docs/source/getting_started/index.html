@@ -29,15 +29,15 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
-    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=0a00a1e5"></script>
+    <script src="../../_static/documentation_options.js?v=dd14482d"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'source/getting_started/index';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -303,20 +303,20 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h1>
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
 <p>This note describes to get started with the course <em>Python for the Financial Economist</em> including installation of relevant software.</p>
 <p>Most of the relevant course material can be found in the <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a>.</p>
 <p>There are several ways of starting working with the course material and coding in Python. I will use the <em class="xref py py-obj">Anaconda distribution</em>, but feel free to do something else if you
 are used to something else.</p>
 <section id="anaconda-installation">
-<h2>Anaconda installation<a class="headerlink" href="#anaconda-installation" title="Permalink to this heading">#</a></h2>
+<h2>Anaconda installation<a class="headerlink" href="#anaconda-installation" title="Link to this heading">#</a></h2>
 <p>A simple way of getting started is to install <a class="reference external" href="https://www.anaconda.com/">Anaconda</a>.</p>
 <p>An installation guide can be found <a class="reference external" href="https://docs.anaconda.com/free/anaconda/install/index.html">here</a>.</p>
 <p>After the installation, you will have access to the <em class="xref py py-obj">Anaconda Navigator</em> and <em class="xref py py-obj">Anaconda Prompt</em> from which you have access to
 <em class="xref py py-obj">jupyter notebooks</em> or <em class="xref py py-obj">jupyter lab</em> which will use predominately in the course.</p>
 </section>
 <section id="anaconda-environment">
-<h2>Anaconda environment<a class="headerlink" href="#anaconda-environment" title="Permalink to this heading">#</a></h2>
+<h2>Anaconda environment<a class="headerlink" href="#anaconda-environment" title="Link to this heading">#</a></h2>
 <p>The Anaconda distribution comes with a <em class="xref py py-obj">base</em> environment which comes with over 250 packages automatically installed and
 a large number of additional packages that can be individually installed (see <a class="reference external" href="https://docs.anaconda.com/free/anaconda/packages/install-packages/">here</a> for more information).</p>
 <p>In many cases, we would be able to work directly with the <em class="xref py py-obj">base</em> environment, but this may lead to issues with different versions of Python packages, e.g. we
@@ -324,13 +324,13 @@ need two different versions of a Python package for two different projects. The 
 <p>We will create a new <em class="xref py py-obj">conda</em> environment that contains the python packages used in the course. A guide can be found
 <a class="reference external" href="https://docs.anaconda.com/free/navigator/tutorials/manage-environments/">here</a>.</p>
 <section id="yml-file-with-environment-specification">
-<h3>YML file with environment specification<a class="headerlink" href="#yml-file-with-environment-specification" title="Permalink to this heading">#</a></h3>
+<h3>YML file with environment specification<a class="headerlink" href="#yml-file-with-environment-specification" title="Link to this heading">#</a></h3>
 <p>The root of the <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a> contains the yml file
 <em class="xref py py-obj">environment.yml</em> which can be imported directly into <em class="xref py py-obj">Anaconda Navigator</em> to create a new environment.</p>
 </section>
 </section>
 <section id="jupyter-notebooks">
-<h2>Jupyter notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this heading">#</a></h2>
+<h2>Jupyter notebooks<a class="headerlink" href="#jupyter-notebooks" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://jupyter.org/">Jupyter</a> is a browser-based way of interacting with Python and is especially useful when working
 and interacting with data and want to visualize and do calculations on the fly. It is generally not suited for developing
 bigger applications.</p>
@@ -355,20 +355,20 @@ bigger applications.</p>
 <a class="reference internal image-reference" href="../../_images/jupyter_1.jpg"><img alt="../../_images/jupyter_1.jpg" class="align-center" src="../../_images/jupyter_1.jpg" style="width: 748.3px; height: 284.2px;" /></a>
 </section>
 <section id="using-ides">
-<h2>Using IDEs<a class="headerlink" href="#using-ides" title="Permalink to this heading">#</a></h2>
+<h2>Using IDEs<a class="headerlink" href="#using-ides" title="Link to this heading">#</a></h2>
 <p>We will primarily use <em class="xref py py-obj">jupyter notebooks</em> for coding and analysis (one should be able to complete the course using only notebooks),
 but sometimes we need to utilize an IDE (integrated development environment) to write code.This will increase the productivity
 when writing e.g. code libraries. Some of the most used IDEs integrate easily with Anaconda
 (see <a class="reference external" href="https://docs.anaconda.com/free/anaconda/ide-tutorials/">here</a>).</p>
 <section id="pycharm">
-<h3>PyCharm<a class="headerlink" href="#pycharm" title="Permalink to this heading">#</a></h3>
+<h3>PyCharm<a class="headerlink" href="#pycharm" title="Link to this heading">#</a></h3>
 <p>I will use the <em class="xref py py-obj">PyCharm</em> IDE in this course that can de downloaded <a class="reference external" href="https://www.jetbrains.com/pycharm/download/#section=windows">here</a>. Select the <em class="xref py py-obj">professional</em> version.</p>
 <p>A free student license can be obtained <a class="reference external" href="https://www.jetbrains.com/community/education/#students">here</a>.</p>
 <p>The license can be registered by selecting <em class="xref py py-obj">Help &gt; Register</em> in the toolbar when opening <em class="xref py py-obj">PyCharm</em>
 (see <a class="reference external" href="https://www.jetbrains.com/help/pycharm/register.html">here</a>).</p>
 <p>Feel free to use alternatives such as <em class="xref py py-obj">Spyder</em> or <em class="xref py py-obj">VS code</em>, but this will not be supported.</p>
 <section id="configuration-of-environment">
-<h4>Configuration of environment<a class="headerlink" href="#configuration-of-environment" title="Permalink to this heading">#</a></h4>
+<h4>Configuration of environment<a class="headerlink" href="#configuration-of-environment" title="Link to this heading">#</a></h4>
 <p>After you have opened the project, then we need to configure the virtual environment. Go to <em class="xref py py-obj">File &gt; Settings &gt; Project: Python for …</em> and
 select <em class="xref py py-obj">Python interpreter</em>. Press the symbol in the red circle (see below) and select <em class="xref py py-obj">Add</em></p>
 <a class="reference internal image-reference" href="../../_images/virt_env_1.jpg"><img alt="../../_images/virt_env_1.jpg" class="align-center" src="../../_images/virt_env_1.jpg" style="width: 1134.0px; height: 756.0px;" /></a>
@@ -378,42 +378,23 @@ select <em class="xref py py-obj">Python interpreter</em>. Press the symbol in t
 <a class="reference internal image-reference" href="../../_images/virt_env_3.jpg"><img alt="../../_images/virt_env_3.jpg" class="align-center" src="../../_images/virt_env_3.jpg" style="width: 442.5px; height: 157.5px;" /></a>
 </section>
 <section id="change-some-settings">
-<h4>Change some settings<a class="headerlink" href="#change-some-settings" title="Permalink to this heading">#</a></h4>
+<h4>Change some settings<a class="headerlink" href="#change-some-settings" title="Link to this heading">#</a></h4>
 <p>I will be using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code> docstring format. Change it in <em class="xref py py-obj">File &gt; Settings &gt; Tools &gt; Python Integrated Tools</em>:</p>
 <a class="reference internal image-reference" href="../../_images/change_docstring_format.jpg"><img alt="../../_images/change_docstring_format.jpg" class="align-center" src="../../_images/change_docstring_format.jpg" style="width: 679.6999999999999px; height: 491.4px;" /></a>
 </section>
 </section>
 </section>
 <section id="getting-access-to-the-course-material">
-<h2>Getting access to the course material<a class="headerlink" href="#getting-access-to-the-course-material" title="Permalink to this heading">#</a></h2>
+<h2>Getting access to the course material<a class="headerlink" href="#getting-access-to-the-course-material" title="Link to this heading">#</a></h2>
 <p>The easiest way to obtain the course material is simply to download a zip folder from <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a>.</p>
 <a class="reference internal image-reference" href="../../_images/download_zip.jpg"><img alt="../../_images/download_zip.jpg" class="align-center" src="../../_images/download_zip.jpg" style="width: 986.9999999999999px; height: 471.09999999999997px;" /></a>
 <p>The problem with this approach is that you need to download the course material every time the course material is updated.</p>
 <section id="using-git-to-interact-with-github">
-<h3>Using git to interact with Github<a class="headerlink" href="#using-git-to-interact-with-github" title="Permalink to this heading">#</a></h3>
+<h3>Using git to interact with Github<a class="headerlink" href="#using-git-to-interact-with-github" title="Link to this heading">#</a></h3>
 <p>Git enables us to interact directly with Github. Navigate to <a class="reference external" href="https://git-scm.com/downloads">git download</a> and download and install the newest release.</p>
 </section>
-</section>
-<section id="id9">
-<h2>Github repository<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
-<p>Most of the relevant course material can be found in the <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a>.</p>
-<p>To clone the github repository (the master branch), open Git Bash and navigate to the folder where you want the local branch.
-I use the folder <em class="xref py py-obj">C:\code</em> for repositories.</p>
-<p>In Git Bash type</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">c</span><span class="p">:</span>\<span class="n">code</span>
-<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">staxmetrics</span><span class="o">/</span><span class="n">python_for_the_financial_economist</span><span class="o">.</span><span class="n">git</span>
-</pre></div>
-</div>
-<p>Alternatively, it will also be possible directly in PyCharm. Navigate to VCS-&gt;Git-&gt;Clone.</p>
-<p>Now you will have a local version of the github repository on your computer!</p>
-<p>After you have cloned the github repository, you can <em class="xref py py-obj">right click</em> on the folder and choose <em class="xref py py-obj">Open Folder As PyCharm Project</em>.
-If this not work, then you can open a specific project from PyCharm.</p>
-<section id="git-and-git-bash">
-<h3>Git and git bash<a class="headerlink" href="#git-and-git-bash" title="Permalink to this heading">#</a></h3>
-<p>Navigate to <a class="reference external" href="https://git-scm.com/downloads">git download</a> and download and install the newest release.</p>
-</section>
 <section id="cloning-the-github-repository">
-<h3>Cloning the github repository<a class="headerlink" href="#cloning-the-github-repository" title="Permalink to this heading">#</a></h3>
+<h3>Cloning the github repository<a class="headerlink" href="#cloning-the-github-repository" title="Link to this heading">#</a></h3>
 <p>As mentioned, most of the relevant course material can be found in the <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a>.</p>
 <p>To clone the github repository (the master branch), open Git Bash and navigate to the folder where you want the local branch.
 I use the folder <em class="xref py py-obj">C:\code</em> for repositories.</p>
@@ -428,13 +409,13 @@ I use the folder <em class="xref py py-obj">C:\code</em> for repositories.</p>
 If this not work, then you can open a specific project from PyCharm.</p>
 </section>
 <section id="pulling-newest-update-to-local-repository">
-<h3>Pulling newest update to local repository<a class="headerlink" href="#pulling-newest-update-to-local-repository" title="Permalink to this heading">#</a></h3>
+<h3>Pulling newest update to local repository<a class="headerlink" href="#pulling-newest-update-to-local-repository" title="Link to this heading">#</a></h3>
 <p>I will continuously add new material to the github repository. To pull the newest version, you need to download it to your computer.</p>
 <p>This can be done directly from PyCharm by navigating to VCS-&gt;Git-&gt;Pull (on a Windows machine). Alternatively, one could do it using git bash.</p>
 </section>
 </section>
 <section id="folder-structure">
-<h2>Folder structure<a class="headerlink" href="#folder-structure" title="Permalink to this heading">#</a></h2>
+<h2>Folder structure<a class="headerlink" href="#folder-structure" title="Link to this heading">#</a></h2>
 <p>The folder structure is presented below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>python_for_the_financial_economist
 ├── codelib
@@ -450,7 +431,7 @@ If this not work, then you can open a specific project from PyCharm.</p>
 </pre></div>
 </div>
 <section id="access-virtual-environment-in-jupyter-notebook">
-<h3>Access virtual environment in Jupyter notebook<a class="headerlink" href="#access-virtual-environment-in-jupyter-notebook" title="Permalink to this heading">#</a></h3>
+<h3>Access virtual environment in Jupyter notebook<a class="headerlink" href="#access-virtual-environment-in-jupyter-notebook" title="Link to this heading">#</a></h3>
 <p>To be able to access the virtual environment from a Jupyter notebook, we need run the following command in the terminal</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m ipykernel install --user --name=name_of_venv</span>
 </pre></div>
@@ -459,19 +440,19 @@ If this not work, then you can open a specific project from PyCharm.</p>
 </section>
 </section>
 <section id="working-with-your-own-code-and-notebooks">
-<h2>Working with your own code and notebooks<a class="headerlink" href="#working-with-your-own-code-and-notebooks" title="Permalink to this heading">#</a></h2>
+<h2>Working with your own code and notebooks<a class="headerlink" href="#working-with-your-own-code-and-notebooks" title="Link to this heading">#</a></h2>
 <p>There are several possibilities to work with your own code including</p>
 <section id="a-folder-with-code-and-notebooks">
-<h3>A folder with code and notebooks<a class="headerlink" href="#a-folder-with-code-and-notebooks" title="Permalink to this heading">#</a></h3>
+<h3>A folder with code and notebooks<a class="headerlink" href="#a-folder-with-code-and-notebooks" title="Link to this heading">#</a></h3>
 <p>The simplest approach will be to simple have a folder somewhere on your computer with notebooks and scripts.</p>
 </section>
 <section id="new-branch-in-the-repository">
-<h3>New branch in the repository<a class="headerlink" href="#new-branch-in-the-repository" title="Permalink to this heading">#</a></h3>
+<h3>New branch in the repository<a class="headerlink" href="#new-branch-in-the-repository" title="Link to this heading">#</a></h3>
 <p>You may make a new branch in the repository <em class="xref py py-obj">python_for_the_financial_economist</em>. You will then have to merge changes to the master branch into your own branch
 to have the newest material.</p>
 </section>
 <section id="new-repository">
-<h3>New repository<a class="headerlink" href="#new-repository" title="Permalink to this heading">#</a></h3>
+<h3>New repository<a class="headerlink" href="#new-repository" title="Link to this heading">#</a></h3>
 <p>You can create your own repository.</p>
 </section>
 </section>
@@ -540,10 +521,6 @@ to have the newest material.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-access-to-the-course-material">Getting access to the course material</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-git-to-interact-with-github">Using git to interact with Github</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Github repository</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-and-git-bash">Git and git bash</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-the-github-repository">Cloning the github repository</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-newest-update-to-local-repository">Pulling newest update to local repository</a></li>
 </ul>
@@ -601,7 +578,7 @@ to have the newest material.</p>
       
         <div class="footer-item">
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.5.
     <br/>
   </p>
 </div>
