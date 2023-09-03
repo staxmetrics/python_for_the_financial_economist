@@ -1,5 +1,5 @@
 import numpy as np
-from typing import Union
+from typing import Union, Tuple
 from scipy.interpolate import interp1d
 
 
@@ -82,3 +82,30 @@ def calculate_exponential_decay_probabilities(target_time_point: Union[int, floa
     p_t = numerator / denominator
 
     return p_t
+
+
+def crisp_conditioning_probs(x: np.ndarray, condition: Tuple = (-np.inf, np.inf), axis: int = 0) -> np.ndarray:
+    """
+    Creates an array of crisp condition probabilities.
+
+    Currently only works for one state variable.
+
+    Parameters
+    ----------
+    x:
+        Array for setting the shape of.
+    condition:
+        Tuple with lower and upper bound.
+    axis:
+        The axis to create the weights over. Default is 0.
+
+    Returns
+    -------
+    ndarray
+        Array of equal weights.
+    """
+
+    probs = (x >= condition[0]) & (x <= condition[1])
+    probs = probs / np.sum(probs)
+
+    return probs
