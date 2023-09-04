@@ -14,9 +14,7 @@ dependencies:
   - quandl=3.6.1
   - pip=23.1.2
   - pip:
-      - cvxpy
       - yfinance
       - wrds
       - matplotlib
       - sympy
-      - cvxopt
