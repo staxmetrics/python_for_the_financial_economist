@@ -20,3 +20,4 @@ dependencies:
       - sympy
       - cvxopt
       - cvxpy
+      - arch
