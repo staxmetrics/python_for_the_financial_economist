@@ -21,3 +21,4 @@ dependencies:
       - cvxopt
       - cvxpy
       - arch
+      - scikit-learn
