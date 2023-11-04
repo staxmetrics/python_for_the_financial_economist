@@ -55,7 +55,7 @@ class VasicekCurve(IRateCurve):
         """
 
         if math.isclose(beta, 0.0):
-            raise ZeroDivisionError('theta is not allowed to be zero')
+            raise ZeroDivisionError('beta is not allowed to be zero')
 
         self.short_rate = short_rate
         self.theta = theta
