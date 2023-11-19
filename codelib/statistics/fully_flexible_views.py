@@ -365,7 +365,8 @@ def effective_sample_size_entropy(probabilities: np.ndarray, relative: bool = Fa
 
     Returns
     -------
-    number of effective probabilities
+    float
+        number of effective probabilities
     """
 
     j = len(probabilities)
@@ -373,3 +374,26 @@ def effective_sample_size_entropy(probabilities: np.ndarray, relative: bool = Fa
 
     return j_hat / j if relative else j_hat
 
+
+def effective_rank(pos_mat: np.ndarray):
+
+    """
+    Calculates the effective rank of a positive semidefinte matrix.
+
+    Parameters
+    ----------
+    pos_mat:
+        Positive (semi-)definite matrix.
+
+
+    Returns
+    -------
+    float
+        Effective rank
+    """
+
+    eig_vals = np.linalg.eigvalsh(pos_mat)
+
+    eff_rank = np.exp(-np.sum(eig_vals * np.log(eig_vals)))
+
+    return eff_rank

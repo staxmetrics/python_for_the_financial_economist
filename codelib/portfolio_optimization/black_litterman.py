@@ -255,7 +255,7 @@ class BlackLitterman:
 
     def add_diff_view(self, index_first: int, index_second: int, target: float) -> NoReturn:
         """
-        Adds an difference view.
+        Adds a difference view.
 
         Parameters
         ----------
