@@ -21,11 +21,11 @@ autoapi_dirs = [r'..\codelib']
 # -- Project information -----------------------------------------------------
 
 project = 'python_for_the_financial_economist'
-copyright = '2023, Johan Stax Jakobsen'
+copyright = '2024, Johan Stax Jakobsen'
 author = 'Johan Stax Jakobsen'
 
 # The full version, including alpha/beta/rc tags
-release = '12-08-2023'
+release = '01-09-2024'
 
 
 # -- General configuration ---------------------------------------------------
