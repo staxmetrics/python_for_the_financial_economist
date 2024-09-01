@@ -11,14 +11,8 @@ Welcome to Python for the Financial Economist
 
 This documentation describes how to get started with the course
 
-`Github respository <https://github.com/staxmetrics/python_for_the_financial_economist>`_
-
-
 
 .. toctree::
    :maxdepth: 2
 
-   getting_started/index
-   user_guide/index
-   api_reference/index
-
+   source/index
