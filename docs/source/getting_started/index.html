@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting started &#8212; python_for_the_financial_economist 12-08-2023 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=362ab14a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script src="../../_static/documentation_options.js?v=dd14482d"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'source/getting_started/index';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="User Guide" href="../user_guide/index.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">python_for_the_financial_economist 12-08-2023 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        <no title>
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        <no title>
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">&lt;no title&gt;</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Getting started</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="getting-started">
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
+<p>This note describes to get started with the course <em>Python for the Financial Economist</em> including installation of relevant software.</p>
+<p>Most of the relevant course material can be found in the <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a>.</p>
+<p>There are several ways of starting working with the course material and coding in Python. I will use the <em class="xref py py-obj">Anaconda distribution</em>, but feel free to do something else if you
+are used to something else.</p>
+<section id="anaconda-installation">
+<h2>Anaconda installation<a class="headerlink" href="#anaconda-installation" title="Link to this heading">#</a></h2>
+<p>A simple way of getting started is to install <a class="reference external" href="https://www.anaconda.com/">Anaconda</a>.</p>
+<p>An installation guide can be found <a class="reference external" href="https://docs.anaconda.com/free/anaconda/install/index.html">here</a>.</p>
+<p>After the installation, you will have access to the <em class="xref py py-obj">Anaconda Navigator</em> and <em class="xref py py-obj">Anaconda Prompt</em> from which you have access to
+<em class="xref py py-obj">jupyter notebooks</em> or <em class="xref py py-obj">jupyter lab</em> which will use predominately in the course.</p>
+</section>
+<section id="anaconda-environment">
+<h2>Anaconda environment<a class="headerlink" href="#anaconda-environment" title="Link to this heading">#</a></h2>
+<p>The Anaconda distribution comes with a <em class="xref py py-obj">base</em> environment which comes with over 250 packages automatically installed and
+a large number of additional packages that can be individually installed (see <a class="reference external" href="https://docs.anaconda.com/free/anaconda/packages/install-packages/">here</a> for more information).</p>
+<p>In many cases, we would be able to work directly with the <em class="xref py py-obj">base</em> environment, but this may lead to issues with different versions of Python packages, e.g. we
+need two different versions of a Python package for two different projects. The recommended approach is to create a new <em class="xref py py-obj">conda</em> environment for each project (the course in this case).</p>
+<p>We will create a new <em class="xref py py-obj">conda</em> environment that contains the python packages used in the course. A guide can be found
+<a class="reference external" href="https://docs.anaconda.com/free/navigator/tutorials/manage-environments/">here</a>.</p>
+<section id="yml-file-with-environment-specification">
+<h3>YML file with environment specification<a class="headerlink" href="#yml-file-with-environment-specification" title="Link to this heading">#</a></h3>
+<p>The root of the <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a> contains the yml file
+<em class="xref py py-obj">environment.yml</em> which can be imported directly into <em class="xref py py-obj">Anaconda Navigator</em> to create a new environment.</p>
+</section>
+</section>
+<section id="jupyter-notebooks">
+<h2>Jupyter notebooks<a class="headerlink" href="#jupyter-notebooks" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://jupyter.org/">Jupyter</a> is a browser-based way of interacting with Python and is especially useful when working
+and interacting with data and want to visualize and do calculations on the fly. It is generally not suited for developing
+bigger applications.</p>
+<p>We will be using Jupyter notebooks extensively during the course. All course material is presented in the form of notebooks.</p>
+<p>Will will be able to launch <em class="xref py py-obj">Jupyter</em> directly from the <em class="xref py py-obj">Anaconda Navigator</em> by pushing the launch button at the Jupyter notebook icon
+(remember to select the correct environment).</p>
+<p>Another method to open a Jupyter notebook is to use the <em class="xref py py-obj">Anaconda Prompt</em>. It should looks something like this:</p>
+<a class="reference internal image-reference" href="../../_images/anaconda_prompt.jpg"><img alt="../../_images/anaconda_prompt.jpg" class="align-center" src="../../_images/anaconda_prompt.jpg" style="width: 1092.6999999999998px; height: 226.79999999999998px;" /></a>
+<p><em class="xref py py-obj">(base)</em> indicates that the base environment is activated. We can activate the relevant environment with</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">conda activate fin_econ_2023</span>
+</pre></div>
+</div>
+<p>After we have navigated to the desired folder, e.g.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd C:\code\python_for_the_financial_economist</span>
+</pre></div>
+</div>
+<p>We can launch Jupyter with</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">jupyter notebook</span>
+</pre></div>
+</div>
+<p>If you run the command from the root of <em class="xref py py-obj">python_for_the_financial_economist</em>, you should see something like</p>
+<a class="reference internal image-reference" href="../../_images/jupyter_1.jpg"><img alt="../../_images/jupyter_1.jpg" class="align-center" src="../../_images/jupyter_1.jpg" style="width: 748.3px; height: 284.2px;" /></a>
+</section>
+<section id="using-ides">
+<h2>Using IDEs<a class="headerlink" href="#using-ides" title="Link to this heading">#</a></h2>
+<p>We will primarily use <em class="xref py py-obj">jupyter notebooks</em> for coding and analysis (one should be able to complete the course using only notebooks),
+but sometimes we need to utilize an IDE (integrated development environment) to write code.This will increase the productivity
+when writing e.g. code libraries. Some of the most used IDEs integrate easily with Anaconda
+(see <a class="reference external" href="https://docs.anaconda.com/free/anaconda/ide-tutorials/">here</a>).</p>
+<section id="pycharm">
+<h3>PyCharm<a class="headerlink" href="#pycharm" title="Link to this heading">#</a></h3>
+<p>I will use the <em class="xref py py-obj">PyCharm</em> IDE in this course that can de downloaded <a class="reference external" href="https://www.jetbrains.com/pycharm/download/#section=windows">here</a>. Select the <em class="xref py py-obj">professional</em> version.</p>
+<p>A free student license can be obtained <a class="reference external" href="https://www.jetbrains.com/community/education/#students">here</a>.</p>
+<p>The license can be registered by selecting <em class="xref py py-obj">Help &gt; Register</em> in the toolbar when opening <em class="xref py py-obj">PyCharm</em>
+(see <a class="reference external" href="https://www.jetbrains.com/help/pycharm/register.html">here</a>).</p>
+<p>Feel free to use alternatives such as <em class="xref py py-obj">Spyder</em> or <em class="xref py py-obj">VS code</em>, but this will not be supported.</p>
+<section id="configuration-of-environment">
+<h4>Configuration of environment<a class="headerlink" href="#configuration-of-environment" title="Link to this heading">#</a></h4>
+<p>After you have opened the project, then we need to configure the virtual environment. Go to <em class="xref py py-obj">File &gt; Settings &gt; Project: Python for …</em> and
+select <em class="xref py py-obj">Python interpreter</em>. Press the symbol in the red circle (see below) and select <em class="xref py py-obj">Add</em></p>
+<a class="reference internal image-reference" href="../../_images/virt_env_1.jpg"><img alt="../../_images/virt_env_1.jpg" class="align-center" src="../../_images/virt_env_1.jpg" style="width: 1134.0px; height: 756.0px;" /></a>
+<p>Select the already created conda environment. Press <em class="xref py py-obj">OK</em>.</p>
+<a class="reference internal image-reference" href="../../_images/virt_env_2.jpg"><img alt="../../_images/virt_env_2.jpg" class="align-center" src="../../_images/virt_env_2.jpg" style="width: 887.4px; height: 636.0px;" /></a>
+<p>When selecting the terminal you should be able to see that you are working with the conda environment, e.g.</p>
+<a class="reference internal image-reference" href="../../_images/virt_env_3.jpg"><img alt="../../_images/virt_env_3.jpg" class="align-center" src="../../_images/virt_env_3.jpg" style="width: 442.5px; height: 157.5px;" /></a>
+</section>
+<section id="change-some-settings">
+<h4>Change some settings<a class="headerlink" href="#change-some-settings" title="Link to this heading">#</a></h4>
+<p>I will be using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code> docstring format. Change it in <em class="xref py py-obj">File &gt; Settings &gt; Tools &gt; Python Integrated Tools</em>:</p>
+<a class="reference internal image-reference" href="../../_images/change_docstring_format.jpg"><img alt="../../_images/change_docstring_format.jpg" class="align-center" src="../../_images/change_docstring_format.jpg" style="width: 679.6999999999999px; height: 491.4px;" /></a>
+</section>
+</section>
+</section>
+<section id="getting-access-to-the-course-material">
+<h2>Getting access to the course material<a class="headerlink" href="#getting-access-to-the-course-material" title="Link to this heading">#</a></h2>
+<p>The easiest way to obtain the course material is simply to download a zip folder from <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a>.</p>
+<a class="reference internal image-reference" href="../../_images/download_zip.jpg"><img alt="../../_images/download_zip.jpg" class="align-center" src="../../_images/download_zip.jpg" style="width: 986.9999999999999px; height: 471.09999999999997px;" /></a>
+<p>The problem with this approach is that you need to download the course material every time the course material is updated.</p>
+<section id="using-git-to-interact-with-github">
+<h3>Using git to interact with Github<a class="headerlink" href="#using-git-to-interact-with-github" title="Link to this heading">#</a></h3>
+<p>Git enables us to interact directly with Github. Navigate to <a class="reference external" href="https://git-scm.com/downloads">git download</a> and download and install the newest release.</p>
+</section>
+<section id="cloning-the-github-repository">
+<h3>Cloning the github repository<a class="headerlink" href="#cloning-the-github-repository" title="Link to this heading">#</a></h3>
+<p>As mentioned, most of the relevant course material can be found in the <a class="reference external" href="https://github.com/staxmetrics/python_for_the_financial_economist">github repository</a>.</p>
+<p>To clone the github repository (the master branch), open Git Bash and navigate to the folder where you want the local branch.
+I use the folder <em class="xref py py-obj">C:\code</em> for repositories.</p>
+<p>Open Git Bash and type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">c</span><span class="p">:</span>\<span class="n">code</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">staxmetrics</span><span class="o">/</span><span class="n">python_for_the_financial_economist</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Alternatively, it will also be possible directly in PyCharm. Navigate to VCS-&gt;Git-&gt;Clone.</p>
+<p>Now you will have a local version of the github repository on your computer!</p>
+<p>After you have cloned the github repository, you can <em class="xref py py-obj">right click</em> on the folder and choose <em class="xref py py-obj">Open Folder As PyCharm Project</em>.
+If this not work, then you can open a specific project from PyCharm.</p>
+</section>
+<section id="pulling-newest-update-to-local-repository">
+<h3>Pulling newest update to local repository<a class="headerlink" href="#pulling-newest-update-to-local-repository" title="Link to this heading">#</a></h3>
+<p>I will continuously add new material to the github repository. To pull the newest version, you need to download it to your computer.</p>
+<p>This can be done directly from PyCharm by navigating to VCS-&gt;Git-&gt;Pull (on a Windows machine). Alternatively, one could do it using git bash.</p>
+</section>
+</section>
+<section id="folder-structure">
+<h2>Folder structure<a class="headerlink" href="#folder-structure" title="Link to this heading">#</a></h2>
+<p>The folder structure is presented below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>python_for_the_financial_economist
+├── codelib
+│   ├── dal
+│   └── statistics
+│   └── visualization
+├── data
+├── docs
+├── examples_notebooks
+├── lectures_and_exercises
+├── tests
+└── requirements.txt
+</pre></div>
+</div>
+<section id="access-virtual-environment-in-jupyter-notebook">
+<h3>Access virtual environment in Jupyter notebook<a class="headerlink" href="#access-virtual-environment-in-jupyter-notebook" title="Link to this heading">#</a></h3>
+<p>To be able to access the virtual environment from a Jupyter notebook, we need run the following command in the terminal</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m ipykernel install --user --name=name_of_venv</span>
+</pre></div>
+</div>
+<p>See e.g. <a class="reference external" href="https://janakiev.com/blog/jupyter-virtual-envs/">this blog</a> for further details.</p>
+</section>
+</section>
+<section id="working-with-your-own-code-and-notebooks">
+<h2>Working with your own code and notebooks<a class="headerlink" href="#working-with-your-own-code-and-notebooks" title="Link to this heading">#</a></h2>
+<p>There are several possibilities to work with your own code including</p>
+<section id="a-folder-with-code-and-notebooks">
+<h3>A folder with code and notebooks<a class="headerlink" href="#a-folder-with-code-and-notebooks" title="Link to this heading">#</a></h3>
+<p>The simplest approach will be to simple have a folder somewhere on your computer with notebooks and scripts.</p>
+</section>
+<section id="new-branch-in-the-repository">
+<h3>New branch in the repository<a class="headerlink" href="#new-branch-in-the-repository" title="Link to this heading">#</a></h3>
+<p>You may make a new branch in the repository <em class="xref py py-obj">python_for_the_financial_economist</em>. You will then have to merge changes to the master branch into your own branch
+to have the newest material.</p>
+</section>
+<section id="new-repository">
+<h3>New repository<a class="headerlink" href="#new-repository" title="Link to this heading">#</a></h3>
+<p>You can create your own repository.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../user_guide/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">User Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-installation">Anaconda installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-environment">Anaconda environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#yml-file-with-environment-specification">YML file with environment specification</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks">Jupyter notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ides">Using IDEs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">PyCharm</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-of-environment">Configuration of environment</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#change-some-settings">Change some settings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-access-to-the-course-material">Getting access to the course material</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-git-to-interact-with-github">Using git to interact with Github</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloning-the-github-repository">Cloning the github repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pulling-newest-update-to-local-repository">Pulling newest update to local repository</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#folder-structure">Folder structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#access-virtual-environment-in-jupyter-notebook">Access virtual environment in Jupyter notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-your-own-code-and-notebooks">Working with your own code and notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-folder-with-code-and-notebooks">A folder with code and notebooks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-branch-in-the-repository">New branch in the repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-repository">New repository</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/source/getting_started/index.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2023, Johan Stax Jakobsen.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.5.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

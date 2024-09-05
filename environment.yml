@@ -11,10 +11,10 @@ dependencies:
   - scipy=1.13.1
   - statsmodels=0.14.2
   - seaborn=0.13.2
-  - fredapi
   - pip=24.2
   - pip:
       - yfinance
+      - fredapi
       - wrds
       - matplotlib
       - sympy
