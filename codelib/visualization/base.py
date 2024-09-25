@@ -424,9 +424,9 @@ def waterfall_chart(labels: List[str], values: Union[np.ndarray, List[float]], *
     for index, row in trans.iterrows():
         # For the last item in the list, we don't want to double count
         if row['amount'] == total:
-            y = y_height[loop]
+            y = y_height.iloc[loop]
         else:
-            y = y_height[loop] + row['amount']
+            y = y_height.iloc[loop] + row['amount']
         # Determine if we want a neg or pos offset
         if row['amount'] > 0:
             y += (pos_offset * 2)
