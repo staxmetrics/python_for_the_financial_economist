@@ -22,3 +22,4 @@ dependencies:
       - cvxpy
       - arch
       - scikit-learn
+      - ipympl
