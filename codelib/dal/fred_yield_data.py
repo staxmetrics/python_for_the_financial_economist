@@ -1,7 +1,6 @@
 import pandas as pd
-import pkg_resources
-
-DATA_PATH = pkg_resources.resource_filename('codelib', '../data/')
+import requests
+from io import BytesIO
 
 
 def get_nominal_yield_data(output_type: str = 'zero_yields') -> pd.DataFrame:
@@ -21,7 +20,12 @@ def get_nominal_yield_data(output_type: str = 'zero_yields') -> pd.DataFrame:
 
     """
 
-    yield_data = pd.read_csv(DATA_PATH + "feds200628.csv", skiprows=9, index_col=0, parse_dates=True)
+    url = "https://www.federalreserve.gov/data/yield-curve-tables/feds200628.csv"
+    headers = {"User-Agent": "Mozilla/5.0"}
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()  # Raises HTTPError for bad responses
+
+    yield_data = pd.read_csv(BytesIO(response.content), skiprows=9, index_col=0, parse_dates=True)
 
     if output_type == "parameters":
         return yield_data[['BETA0', 'BETA1', 'BETA2', 'BETA3', 'TAU1', 'TAU2']]
