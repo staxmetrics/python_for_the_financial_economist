@@ -1,0 +1,5 @@
+# Additional packages needed only for building the Sphinx documentation beyond the conda environment in environment.yml.
+sphinx
+sphinx-autodoc-typehints
+sphinx-math-dollar
+pydata-sphinx-theme
