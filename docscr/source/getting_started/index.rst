@@ -87,51 +87,28 @@ when writing e.g. code libraries. Some of the most used IDEs integrate easily wi
 (see `here <https://docs.anaconda.com/free/anaconda/ide-tutorials/>`_).
 
 
-PyCharm
-^^^^^^^
+Visual Studio Code
+^^^^^^^^^^^^^^^^^^
 
-I will use the `PyCharm` IDE in this course that can de downloaded `here <https://www.jetbrains.com/pycharm/download/#section=windows>`_. Select the `professional` version.
+I will use the `Visual Studio Code` IDE in this course. It can be downloaded `here <https://code.visualstudio.com/download>`_.
 
-A free student license can be obtained `here <https://www.jetbrains.com/community/education/#students>`_.
+For Python development, install the `Python` extension from the Extensions view in VS Code. This gives you code editing,
+linting, debugging and Jupyter support directly in the editor.
 
-The license can be registered by selecting `Help > Register` in the toolbar when opening `PyCharm`
-(see `here <https://www.jetbrains.com/help/pycharm/register.html>`_).
-
-Feel free to use alternatives such as `Spyder` or `VS code`, but this will not be supported.
+Feel free to use alternatives such as `PyCharm` or `Spyder`, but `VS Code` will be the default supported option.
 
 Configuration of environment
 """"""""""""""""""""""""""""
 
-After you have opened the project, then we need to configure the virtual environment. Go to `File > Settings > Project: Python for ...` and
-select `Python interpreter`. Press the symbol in the red circle (see below) and select `Add`
+After you have opened the project, we need to configure the virtual environment. In VS Code, open the Command Palette with
+`Ctrl+Shift+P`, run `Python: Select Interpreter`, and choose the conda environment that you created for the course.
 
-.. image:: virt_env_1.jpg
-    :scale: 70 %
-    :align: center
-
-
-Select the already created conda environment. Press `OK`.
-
-.. image:: virt_env_2.jpg
-    :scale: 60 %
-    :align: center
-
-
-When selecting the terminal you should be able to see that you are working with the conda environment, e.g.
+You can also check the selected environment in the terminal by opening a new terminal in VS Code. The prompt should show the
+active conda environment, e.g.
 
 .. image:: virt_env_3.jpg
     :scale: 50 %
     :align: center
-
-Change some settings
-""""""""""""""""""""
-
-I will be using the `numpy` docstring format. Change it in `File > Settings > Tools > Python Integrated Tools`:
-
-.. image:: change_docstring_format.jpg
-    :scale: 70 %
-    :align: center
-
 
 
 Getting access to the course material
@@ -168,19 +145,19 @@ Open Git Bash and type
     git clone https://github.com/staxmetrics/python_for_the_financial_economist.git
 
 
-Alternatively, it will also be possible directly in PyCharm. Navigate to VCS->Git->Clone.
+Alternatively, it is also possible directly in VS Code via `Source Control > Clone Repository`.
 
 Now you will have a local version of the github repository on your computer!
 
-After you have cloned the github repository, you can `right click` on the folder and choose `Open Folder As PyCharm Project`.
-If this not work, then you can open a specific project from PyCharm.
+After you have cloned the github repository, open the folder in VS Code by using `File > Open Folder`.
+If this does not work, you can also open the project from the VS Code Explorer.
 
 Pulling newest update to local repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 I will continuously add new material to the github repository. To pull the newest version, you need to download it to your computer.
 
-This can be done directly from PyCharm by navigating to VCS->Git->Pull (on a Windows machine). Alternatively, one could do it using git bash.
+This can be done directly from VS Code via `Source Control > Pull` (on a Windows machine). Alternatively, one could do it using git bash.
 
 Folder structure
 ----------------
