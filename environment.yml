@@ -1,26 +1,43 @@
 name: fin_econ_2026
 
+channels:
+  - conda-forge
+
 dependencies:
+  - python=3.13.15
+  
+  # Jupyter
   - notebook
   - jupyterlab
   - ipykernel
+  - ipympl
+
+  # Scientific computing
   - numpy
+  - scipy
   - pandas
   - numba
-  - pandas-datareader
-  - scipy
   - statsmodels
+  - scikit-learn
+  - sympy
+
+  # Plotting
+  - matplotlib
   - seaborn
+
+  # Optimization
+  - cvxpy
+  - cvxopt
+
+  # Econometrics / finance
+  - arch-py
+  - pandas-datareader
+
+  # Data access
+  - yfinance
+  - fredapi
+
   - pip
   - pip:
-      - yfinance
-      - fredapi
       - wrds
-      - matplotlib
-      - sympy
-      - cvxopt
-      - cvxpy
-      - arch
-      - scikit-learn
-      - ipympl
       - tidyfinance

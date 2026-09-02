@@ -135,8 +135,10 @@ dmypy.json
 .pyre/
 /junk/
 
+# documentation
+docscr/_build/
 
 # pictures
-*.png
-*.jpg
-*.pdf
+#*.png
+#*.jpg
+#*.pdf
