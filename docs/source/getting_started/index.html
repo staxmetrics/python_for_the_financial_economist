@@ -27,17 +27,17 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=cb8930eaaf36d9849b67" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
   
   <!-- So that users can add custom icons -->
-  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
+  <script defer src="../../_static/scripts/fontawesome.js?digest=cb8930eaaf36d9849b67"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67" />
 
     <script src="../../_static/documentation_options.js?v=d0c90bce"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
@@ -390,30 +390,19 @@ bigger applications.</p>
 but sometimes we need to utilize an IDE (integrated development environment) to write code.This will increase the productivity
 when writing e.g. code libraries. Some of the most used IDEs integrate easily with Anaconda
 (see <a class="reference external" href="https://docs.anaconda.com/free/anaconda/ide-tutorials/">here</a>).</p>
-<section id="pycharm">
-<h3>PyCharm<a class="headerlink" href="#pycharm" title="Link to this heading">#</a></h3>
-<p>I will use the <em class="xref py py-obj">PyCharm</em> IDE in this course that can de downloaded <a class="reference external" href="https://www.jetbrains.com/pycharm/download/#section=windows">here</a>. Select the <em class="xref py py-obj">professional</em> version.</p>
-<p>A free student license can be obtained <a class="reference external" href="https://www.jetbrains.com/community/education/#students">here</a>.</p>
-<p>The license can be registered by selecting <em class="xref py py-obj">Help &gt; Register</em> in the toolbar when opening <em class="xref py py-obj">PyCharm</em>
-(see <a class="reference external" href="https://www.jetbrains.com/help/pycharm/register.html">here</a>).</p>
-<p>Feel free to use alternatives such as <em class="xref py py-obj">Spyder</em> or <em class="xref py py-obj">VS code</em>, but this will not be supported.</p>
+<section id="visual-studio-code">
+<h3>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Link to this heading">#</a></h3>
+<p>I will use the <em class="xref py py-obj">Visual Studio Code</em> IDE in this course. It can be downloaded <a class="reference external" href="https://code.visualstudio.com/download">here</a>.</p>
+<p>For Python development, install the <em class="xref py py-obj">Python</em> extension from the Extensions view in VS Code. This gives you code editing,
+linting, debugging and Jupyter support directly in the editor.</p>
+<p>Feel free to use alternatives such as <em class="xref py py-obj">PyCharm</em> or <em class="xref py py-obj">Spyder</em>, but <em class="xref py py-obj">VS Code</em> will be the default supported option.</p>
 <section id="configuration-of-environment">
 <h4>Configuration of environment<a class="headerlink" href="#configuration-of-environment" title="Link to this heading">#</a></h4>
-<p>After you have opened the project, then we need to configure the virtual environment. Go to <em class="xref py py-obj">File &gt; Settings &gt; Project: Python for …</em> and
-select <em class="xref py py-obj">Python interpreter</em>. Press the symbol in the red circle (see below) and select <em class="xref py py-obj">Add</em></p>
-<a class="reference internal image-reference" href="../../_images/virt_env_1.JPG"><img alt="../../_images/virt_env_1.JPG" class="align-center" height="756" src="../../_images/virt_env_1.JPG" width="1134" />
-</a>
-<p>Select the already created conda environment. Press <em class="xref py py-obj">OK</em>.</p>
-<a class="reference internal image-reference" href="../../_images/virt_env_2.JPG"><img alt="../../_images/virt_env_2.JPG" class="align-center" height="636" src="../../_images/virt_env_2.JPG" width="887" />
-</a>
-<p>When selecting the terminal you should be able to see that you are working with the conda environment, e.g.</p>
+<p>After you have opened the project, we need to configure the virtual environment. In VS Code, open the Command Palette with
+<em class="xref py py-obj">Ctrl+Shift+P</em>, run <em class="xref py py-obj">Python: Select Interpreter</em>, and choose the conda environment that you created for the course.</p>
+<p>You can also check the selected environment in the terminal by opening a new terminal in VS Code. The prompt should show the
+active conda environment, e.g.</p>
 <a class="reference internal image-reference" href="../../_images/virt_env_3.JPG"><img alt="../../_images/virt_env_3.JPG" class="align-center" height="158" src="../../_images/virt_env_3.JPG" width="442" />
-</a>
-</section>
-<section id="change-some-settings">
-<h4>Change some settings<a class="headerlink" href="#change-some-settings" title="Link to this heading">#</a></h4>
-<p>I will be using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy</span></code> docstring format. Change it in <em class="xref py py-obj">File &gt; Settings &gt; Tools &gt; Python Integrated Tools</em>:</p>
-<a class="reference internal image-reference" href="../../_images/change_docstring_format.JPG"><img alt="../../_images/change_docstring_format.JPG" class="align-center" height="491" src="../../_images/change_docstring_format.JPG" width="680" />
 </a>
 </section>
 </section>
@@ -438,15 +427,15 @@ I use the folder <em class="xref py py-obj">C:\code</em> for repositories.</p>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">staxmetrics</span><span class="o">/</span><span class="n">python_for_the_financial_economist</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>Alternatively, it will also be possible directly in PyCharm. Navigate to VCS-&gt;Git-&gt;Clone.</p>
+<p>Alternatively, it is also possible directly in VS Code via <em class="xref py py-obj">Source Control &gt; Clone Repository</em>.</p>
 <p>Now you will have a local version of the github repository on your computer!</p>
-<p>After you have cloned the github repository, you can <em class="xref py py-obj">right click</em> on the folder and choose <em class="xref py py-obj">Open Folder As PyCharm Project</em>.
-If this not work, then you can open a specific project from PyCharm.</p>
+<p>After you have cloned the github repository, open the folder in VS Code by using <em class="xref py py-obj">File &gt; Open Folder</em>.
+If this does not work, you can also open the project from the VS Code Explorer.</p>
 </section>
 <section id="pulling-newest-update-to-local-repository">
 <h3>Pulling newest update to local repository<a class="headerlink" href="#pulling-newest-update-to-local-repository" title="Link to this heading">#</a></h3>
 <p>I will continuously add new material to the github repository. To pull the newest version, you need to download it to your computer.</p>
-<p>This can be done directly from PyCharm by navigating to VCS-&gt;Git-&gt;Pull (on a Windows machine). Alternatively, one could do it using git bash.</p>
+<p>This can be done directly from VS Code via <em class="xref py py-obj">Source Control &gt; Pull</em> (on a Windows machine). Alternatively, one could do it using git bash.</p>
 </section>
 </section>
 <section id="folder-structure">
@@ -547,9 +536,8 @@ to have the newest material.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks">Jupyter notebooks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-ides">Using IDEs</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">PyCharm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-studio-code">Visual Studio Code</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-of-environment">Configuration of environment</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#change-some-settings">Change some settings</a></li>
 </ul>
 </li>
 </ul>
@@ -595,8 +583,8 @@ to have the newest material.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=cb8930eaaf36d9849b67"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=cb8930eaaf36d9849b67"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -630,7 +618,7 @@ to have the newest material.</p>
         <div class="footer-item">
 <p class="theme-version">
   <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.20.0.
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.21.0.
 </p></div>
       
     </div>
