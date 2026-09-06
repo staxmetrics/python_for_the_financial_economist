@@ -65,7 +65,7 @@ class DefaultStyle:
 Default colors
 """
 
-color_map = plt.cm.get_cmap('tab20c')
+color_map = mpl.colormaps['tab20c']
 
 default_colors = dict()
 default_colors['green'] = '#a8e6cf'

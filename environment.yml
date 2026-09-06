@@ -36,6 +36,7 @@ dependencies:
   # Data access
   - yfinance
   - fredapi
+  - openpyxl
 
   - pip
   - pip:

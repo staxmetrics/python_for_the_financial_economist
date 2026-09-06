@@ -139,6 +139,6 @@ dmypy.json
 docscr/_build/
 
 # pictures
-*.png
-*.jpg
-*.pdf
+#*.png
+#*.jpg
+#*.pdf
