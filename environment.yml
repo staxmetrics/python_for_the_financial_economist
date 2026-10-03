@@ -13,6 +13,8 @@ dependencies:
   - ipympl
 
   # Scientific computing
+  # Pin OpenBLAS: the MKL build crashed scipy.linalg (kernel died) on Windows
+  - libblas=*=*openblas
   - numpy
   - scipy
   - pandas
