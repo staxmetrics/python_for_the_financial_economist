@@ -61,16 +61,16 @@ def marchencko_pastur_density(x: np.ndarray, sigma: float, ratio: float) -> np.n
 
     """
 
+    # optimizers may pass sigma as a 1-element array
+    sigma = float(np.asarray(sigma).item())
+    x = np.asarray(x, dtype=float)
+
     lower, upper = marchencko_pastur_bounds(sigma, ratio)
 
-    indicator = np.int64(x >= lower) * np.int64(x <= upper)
-    dv = np.zeros(indicator.shape)
-
-    for i in range(len(x)):
-        temp = x[i]
-        idx = indicator[i]
-        if idx:
-            dv[i] = 1.0 / (2.0 * np.pi * sigma ** 2) * np.sqrt((upper - temp) * (temp - lower)) / (ratio * temp)
+    mask = (x >= lower) & (x <= upper)
+    dv = np.zeros(x.shape)
+    xm = x[mask]
+    dv[mask] = 1.0 / (2.0 * np.pi * sigma ** 2) * np.sqrt((upper - xm) * (xm - lower)) / (ratio * xm)
 
     return dv
 
