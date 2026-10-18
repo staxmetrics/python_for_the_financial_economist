@@ -285,6 +285,9 @@ class NelsonSiegelCurve(IRateCurve):
 
         """
 
+        # Newer scipy versions pass theta from optimize.brute as a 1-d array
+        theta = float(np.asarray(theta).ravel()[0])
+
         curve = cls.create_from_cash_flow_matrix(tenors,
                                                  cash_flow_matrix,
                                                  market_prices,
@@ -335,7 +338,7 @@ class NelsonSiegelCurve(IRateCurve):
                                        Ns=grid_points)
 
                 return cls.create_from_cash_flow_matrix(payments_dates, cash_flow_matrix,
-                                                        market_prices, theta[0])
+                                                        market_prices, float(np.asarray(theta).ravel()[0]))
 
             else:
 
